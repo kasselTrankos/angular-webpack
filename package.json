@@ -1,0 +1,56 @@
+{
+  "name": "webpack-angular",
+  "version": "1.0.0",
+  "description": "ANGULAR/WEBPACK",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "concurrent --kill-others \"npm run watch-client\" \"npm run watch-server\"",
+    "watch-client": "better-npm-run watch-client",
+    "watch-server": "better-npm-run watch-server"
+  },
+  "betterScripts": {
+    "watch-client": {
+      "command": "node src/client",
+      "env": {
+        "NODE_PATH": "./src",
+        "NODE_ENV": "production",
+        "PORT": 8080,
+        "HOST":"localhost"
+      }
+    },
+    "watch-server": {
+      "command": "node src/server",
+      "env": {
+        "NODE_PATH": "./src",
+        "NODE_ENV": "production",
+        "PORT": 9090,
+        "HOST":"localhost"
+      }
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kasselTrankos/angular-webpack.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kasselTrankos/angular-webpack/issues"
+  },
+  "homepage": "https://github.com/kasselTrankos/angular-webpack#readme",
+  "dependencies": {
+    "express": "^4.13.3",
+    "webpack": "^1.12.10"
+  },
+  "devDependencies": {
+    "babel": "^6.3.26",
+    "babel-cli": "^6.4.0",
+    "babel-core": "^6.4.0",
+    "babel-loader": "^6.2.1",
+    "babel-preset-es2015": "^6.3.13",
+    "better-npm-run": "0.0.5",
+    "concurrently": "^1.0.0",
+    "webpack-dev-server": "^1.14.0"
+  }
+}
