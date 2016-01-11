@@ -41,6 +41,7 @@
   "homepage": "https://github.com/kasselTrankos/angular-webpack#readme",
   "dependencies": {
     "angular": "^1.4.8",
+    "angular-material": "^1.0.1",
     "express": "^4.13.3",
     "webpack": "^1.12.10"
   },
@@ -54,6 +55,7 @@
     "browser-sync": "^2.11.0",
     "clean-webpack-plugin": "^0.1.6",
     "concurrently": "^1.0.0",
+    "html-webpack-plugin": "^1.7.0",
     "ng-annotate-webpack-plugin": "^0.1.2",
     "piping": "^0.3.0",
     "webpack-dev-server": "^1.14.0",
