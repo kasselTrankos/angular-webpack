@@ -17,26 +17,26 @@ var config = {
         filename: 'main.js'
     },
     module: {
-        loaders: [{
-            test: /\.html$/,
-            loader: 'file?name=templates/[name]-[hash:6].html'
-        }, {
-            test: /\.(png|jpg)$/,
-            loader: 'file?name=img/[name].[ext]' // inline base64 URLs for <=10kb images, direct URLs for the rest
-        }, {
-            test: /\.css$/,
-            loader: "style!css"
-        }, {
-            test: /\.scss$/,
-            loader: "style!css!autoprefixer!sass"
-        }, {
-            test: /\.js$/,
-            exclude: /(node_modules)/,
-            loader: "babel?presets[]=es2015"
-        }, {
-            test: [/fontawesome-webfont\.svg/, /fontawesome-webfont\.eot/, /fontawesome-webfont\.ttf/, /fontawesome-webfont\.woff/, /fontawesome-webfont\.woff2/],
-            loader: 'file?name=fonts/[name].[ext]'
-        }]
+      loaders: [{
+        test: /\.html$/,
+        loader: 'file?name=templates/[name]-[hash:6].html'
+      }, {
+        test: /\.(png|jpg)$/,
+        loader: 'file?name=img/[name].[ext]' // inline base64 URLs for <=10kb images, direct URLs for the rest
+      }, {
+        test: /\.css$/,
+        loader: "style!css"
+      }, {
+        test: /\.scss$/,
+        loader: "style!css!autoprefixer!sass"
+      }, {
+        test: /\.js$/,
+        exclude: /(node_modules)/,
+        loader: "babel?presets[]=es2015"
+      }, {
+        test: [/fontawesome-webfont\.svg/, /fontawesome-webfont\.eot/, /fontawesome-webfont\.ttf/, /fontawesome-webfont\.woff/, /fontawesome-webfont\.woff2/],
+        loader: 'file?name=fonts/[name].[ext]'
+      }]
     },
     plugins: [
         // HtmlWebpackPlugin: Simplifies creation of HTML files to serve your webpack bundles : https://www.npmjs.com/package/html-webpack-plugin

@@ -11,11 +11,11 @@
   },
   "betterScripts": {
     "watch-client": {
-      "command": "node_modules/.bin/webpack -p --display-modules --progress --config webpack.hot.js && node hot.js",
+      "command": "node_modules/.bin/webpack --debug --devtool source-map --progress --config webpack.hot.js && node hot.js",
       "env": {
-        "NODE_PATH": "./src",
-        "NODE_ENV": "production",
-        "PORT": 8080,
+        "PROCESS_PATH": "/public",
+        "NODE_ENV": "development",
+        "PORT": 3000,
         "HOST": "localhost"
       }
     },
@@ -41,8 +41,12 @@
   "homepage": "https://github.com/kasselTrankos/angular-webpack#readme",
   "dependencies": {
     "angular": "^1.4.8",
+    "angular-animate": "^1.4.8",
+    "angular-aria": "^1.4.8",
     "angular-material": "^1.0.1",
+    "angular-ui-router": "^0.2.15",
     "express": "^4.13.3",
+    "font-awesome": "^4.5.0",
     "webpack": "^1.12.10"
   },
   "devDependencies": {
@@ -55,9 +59,15 @@
     "browser-sync": "^2.11.0",
     "clean-webpack-plugin": "^0.1.6",
     "concurrently": "^1.0.0",
+    "css-loader": "^0.23.1",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "file-loader": "^0.8.5",
     "html-webpack-plugin": "^1.7.0",
     "ng-annotate-webpack-plugin": "^0.1.2",
     "piping": "^0.3.0",
+    "sass-loader": "^3.1.2",
+    "style-loader": "^0.13.0",
+    "url-loader": "^0.5.7",
     "webpack-dev-server": "^1.14.0",
     "webpack-hot-middleware": "^2.6.0"
   }
