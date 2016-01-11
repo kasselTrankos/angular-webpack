@@ -11,3 +11,4 @@ For Dev, run:
 ```bash
 npm run dev
 ```
+This create once compiled js.

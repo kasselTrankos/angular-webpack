@@ -6,11 +6,11 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "concurrent --kill-others \"npm run watch-client\" \"npm run watch-server\"",
-    "watch-client": "better-npm-run watch-client",
+    "dev": "better-npm-run dev",
     "watch-server": "better-npm-run watch-server"
   },
   "betterScripts": {
-    "watch-client": {
+    "dev": {
       "command": "node_modules/.bin/webpack --debug --devtool source-map --progress --config webpack.hot.js && node hot.js",
       "env": {
         "PROCESS_PATH": "/public",
