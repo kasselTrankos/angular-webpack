@@ -1,7 +1,21 @@
-let docBody = "Dinuj o mas o men1os fa";
-console.log('pde1 ande estasaa 1');
-const app = document.getElementById('app')
-app.innerHTML = docBody;
+// Import angular
+import 'angular/angular.js';
+// Material design css
+//import 'angular-material/angular-material.css';
+// Icons
+//import 'font-awesome/css/font-awesome.css';
+// Materail Design lib
+//import angularMaterial from 'angular-material';
+// Router
+//import angularUIRouter from 'angular-ui-router';
+console.log('update mar de cristal');
+// Create our demo module
+let demoModule = angular.module('demo', [
+    //angularMaterial,
+    //angularUIRouter
+])
+
+export default demoModule;
 /////////////removes at the en of application
 if (module.hot) {
   module.hot.accept();

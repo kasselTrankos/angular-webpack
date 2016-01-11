@@ -11,7 +11,7 @@
   },
   "betterScripts": {
     "watch-client": {
-      "command": "node client.js",
+      "command": "node_modules/.bin/webpack -p --display-modules --progress --config webpack.hot.js && node hot.js",
       "env": {
         "NODE_PATH": "./src",
         "NODE_ENV": "production",
@@ -40,6 +40,7 @@
   },
   "homepage": "https://github.com/kasselTrankos/angular-webpack#readme",
   "dependencies": {
+    "angular": "^1.4.8",
     "express": "^4.13.3",
     "webpack": "^1.12.10"
   },
@@ -51,7 +52,9 @@
     "babel-preset-es2015": "^6.3.13",
     "better-npm-run": "0.0.5",
     "browser-sync": "^2.11.0",
+    "clean-webpack-plugin": "^0.1.6",
     "concurrently": "^1.0.0",
+    "ng-annotate-webpack-plugin": "^0.1.2",
     "piping": "^0.3.0",
     "webpack-dev-server": "^1.14.0",
     "webpack-hot-middleware": "^2.6.0"
