@@ -1,45 +1,37 @@
 var path = require('path');
 var webpack = require('webpack');
 var WebpackDevServer = require("webpack-dev-server");
-var config =  require('./../webpack/webpack.client.dev');
+var config =  require('./webpack.client.basic');
 var host = process.env.HOST || 'localhost';
 var port = process.env.PORT || '8080';
-
+config.cache = true;
+config.debug = true;
+config.watch = true;
+config.devtool = "source-map";
+config.entry.unshift(
+	"webpack-dev-server/client?http://" + host + ":" + port,
+	"webpack/hot/dev-server"
+);
+/*config.output.publicPath = "http://" + host + ":"+ port +"/public/";
+config.output.hotUpdateMainFilename = "update/[hash]/update.json";
+config.output.hotUpdateChunkFilename = "update/[hash]/[id].update.js";
+config.plugins = [
+	new webpack.DefinePlugin({__CLIENT__: true, __SERVER__: false}),
+	new webpack.HotModuleReplacementPlugin()
+];
+*/
 var compiler = webpack(config);
+
 var configDevServer = {
-  contentBase: "/public",
-  // or: contentBase: "http://localhost/",
-
-  hot: true,
-  // Enable special support for Hot Module Replacement
-  // Page is no longer updated, but a "webpackHotUpdate" message is send to the content
-  // Use "webpack/hot/dev-server" as additional module in your entry point
-  // Note: this does _not_ add the `HotModuleReplacementPlugin` like the CLI option does.
-
-  // Set this as true if you want to access dev server from arbitrary url.
-  // This is handy if you are using a html5 router.
-  historyApiFallback: false,
-
-  // Set this if you want webpack-dev-server to delegate a single path to an arbitrary server.
-  // Use "*" to proxy all paths to the specified server.
-  // This is useful if you want to get rid of 'http://localhost:8080/' in script[src],
-  // and has many other use cases (see https://github.com/webpack/webpack-dev-server/pull/127 ).
-  proxy: {
-    "*": "http://localhost:9090"
-  },
-  colors: true,
-  // webpack-dev-middleware options
-
-  noInfo: false,
+  contentBase: "./public",
+  hot:true,
+	quiet: false,
+	filename: "assets/main.js",
   inline: true,
-  filename: "bundle.js",
-  watchOptions: {
-    aggregateTimeout: 300,
-    poll: 1000
-  },
-  publicPath: "/public/",
-  headers: { "X-Custom-Header": "yes" },
-  stats: { colors: true },
+  noInfo:true,
+	quiet: false,
+  publicPath:  "http://" + host + ":" + port + "/public/",
+  stats: { colors: true }
 };
 var server = new WebpackDevServer(compiler, configDevServer);
 server.listen(port, host, function() {
