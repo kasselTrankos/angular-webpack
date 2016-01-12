@@ -1,20 +1,20 @@
 var path = require('path'),
-    webpack = require("webpack"),
-    libPath = path.join(__dirname, 'src/app'),
-    wwwPath = path.join(__dirname, 'public', 'assets'),
-    pkg = require('./package.json'),
-    HtmlWebpackPlugin = require('html-webpack-plugin');
+webpack = require("webpack");
+    //libPath = path.join(__dirname, 'src/app'),
+    //wwwPath = path.join(__dirname, 'public', 'assets'),
+    //pkg = require('./package.json'),
+    //HtmlWebpackPlugin = require('html-webpack-plugin');
 
-
-var config = {
+module.exports = {
     entry: [
-      'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000',
-      'webpack/hot/only-dev-server',
-      path.join(libPath, 'app.js')
-    ],
-    output: {
-        path: path.join(wwwPath),
-        filename: 'main.js'
+    'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000',
+    'webpack/hot/only-dev-server',
+    './src/app/app'
+  ],
+  output: {
+    path: path.resolve(__dirname, 'public', 'assets'),
+    publicPath:'/',
+    filename: 'main.js'
     },
     module: {
       loaders: [{
@@ -32,7 +32,7 @@ var config = {
       }, {
         test: /\.js$/,
         exclude: /(node_modules)/,
-        loader: "babel?presets[]=es2015"
+        loader: "ng-annotate!babel?presets[]=es2015"
       }, {
         test: [/fontawesome-webfont\.svg/, /fontawesome-webfont\.eot/, /fontawesome-webfont\.ttf/, /fontawesome-webfont\.woff/, /fontawesome-webfont\.woff2/],
         loader: 'file?name=fonts/[name].[ext]'
@@ -48,7 +48,7 @@ var config = {
 
         // OccurenceOrderPlugin: Assign the module and chunk ids by occurrence count. : https://webpack.github.io/docs/list-of-plugins.html#occurenceorderplugin
         new webpack.optimize.OccurenceOrderPlugin(),
-
+        
         // Deduplication: find duplicate dependencies & prevents duplicate inclusion : https://github.com/webpack/docs/wiki/optimization#deduplication
         new webpack.optimize.DedupePlugin(),
         new webpack.HotModuleReplacementPlugin(),
@@ -56,4 +56,4 @@ var config = {
     ]
 };
 
-module.exports = config;
+//module.exports = config;

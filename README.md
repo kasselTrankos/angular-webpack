@@ -11,4 +11,4 @@ For Dev, run:
 ```bash
 npm run dev
 ```
-This create once compiled js.
+This create once compiled js, and then start de hmr server of webpack.
