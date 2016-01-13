@@ -1,8 +1,10 @@
-export default class MainMenu {
-  
-  constructor($interval) {
+import template from './MainMenu.html';
 
-    this.templateUrl = require('./MainMenu.html');
+export default class MainMenu {
+
+  constructor($interval) {
+    this.test =1;
+    this.templateUrl = template; //require('./MainMenu.html');
     this.restrict='EA';
   }
   link() {

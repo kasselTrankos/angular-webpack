@@ -10,14 +10,16 @@ module.exports = {
     './src/app/app'
   ],
   output: {
-    path: path.resolve(__dirname,'public'),
+    path: path.resolve(__dirname, 'public'),
     publicPath: '/assets/',
     filename: 'main.js'
   },
   module: {
     loaders: [{
       test: /\.html$/,
-      loader: 'file?name=templates/[name]-[hash:6].html'
+      //loader: 'html?name=templates/[name]-[hash:6].html'
+      loader: 'ngtemplate?relativeTo=' + path.resolve(__dirname, 'src', 'app') + '!html'
+      //loader: 'ngtemplate?relativeTo=' + (path.resolve(__dirname, 'public')) + '/!html?name=templates/[name]-[hash:6].html'
     }, {
       test: /\.(png|jpg)$/,
       loader: 'file?name=img/[name].[ext]' // inline base64 URLs for <=10kb images, direct URLs for the rest
