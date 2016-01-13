@@ -2,7 +2,6 @@ var webpack = require('webpack');
 var path  =require('path');
 var host = 'localhost';
 var port = '3000';
-var HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
   context: __dirname,
   devtool: '#source-map',
@@ -38,7 +37,6 @@ module.exports = {
     }]
   },
   plugins: [
-    ///new HtmlWebpackPlugin(),
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin()
