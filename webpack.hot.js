@@ -19,7 +19,8 @@ module.exports = {
     module: {
       loaders: [{
         test: /\.html$/,
-        loader: 'file?name=templates/[name]-[hash:6].html'
+        loader: 'ngtemplate?name=templates/[name]-[hash:6].html'
+        // loader: 'file?name=templates/[name]-[hash:6].html'
       }, {
         test: /\.(png|jpg)$/,
         loader: 'file?name=img/[name].[ext]' // inline base64 URLs for <=10kb images, direct URLs for the rest
@@ -48,7 +49,7 @@ module.exports = {
 
         // OccurenceOrderPlugin: Assign the module and chunk ids by occurrence count. : https://webpack.github.io/docs/list-of-plugins.html#occurenceorderplugin
         new webpack.optimize.OccurenceOrderPlugin(),
-        
+
         // Deduplication: find duplicate dependencies & prevents duplicate inclusion : https://github.com/webpack/docs/wiki/optimization#deduplication
         new webpack.optimize.DedupePlugin(),
         new webpack.HotModuleReplacementPlugin(),

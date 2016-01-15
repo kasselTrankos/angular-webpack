@@ -7,6 +7,6 @@ export default class AppCtrl {
   constructor($scope) {
     'ngInject';
     let vm = this;
-    vm.name = 'Juan';
+    vm.name = 'Juan echa';
   }
 }

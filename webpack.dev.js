@@ -2,11 +2,13 @@ var webpack = require('webpack');
 var path  =require('path');
 var host = 'localhost';
 var port = '3000';
+console.log(__dirname, ' popopo');
 module.exports = {
   context: __dirname,
   devtool: '#source-map',
   entry:[
     'webpack-dev-server/client?http://' + host + ':' + port,
+    'angular-hot-loader?http://'+ host + ':' + port,
     './src/app/app'
   ],
   output: {
@@ -17,8 +19,11 @@ module.exports = {
   module: {
     loaders: [{
       test: /\.html$/,
+      //loader: 'file?name=templates/[name]-[hash:6].html'
+      loader: 'ngtemplate?name=templates/[name].html'
+      //loader: 'ngtemplate?relativeTo=' + path.resolve(__dirname, 'src')+'&module=ats.main!html'
       //loader: 'html?name=templates/[name]-[hash:6].html'
-      loader: 'ngtemplate?relativeTo=' + path.resolve(__dirname, 'src', 'app') + '!html'
+      //loader: 'ngtemplate?relativeTo=' + path.resolve(__dirname, 'src') + '!html'
       //loader: 'ngtemplate?relativeTo=' + (path.resolve(__dirname, 'public')) + '/!html?name=templates/[name]-[hash:6].html'
     }, {
       test: /\.(png|jpg)$/,

@@ -14,9 +14,12 @@ const mainModule = angular.module('ats.main', [
 
 mainModule.controller('AppCtrl', AppCtrl);
 mainModule.directive('mainMenu', ($interval)=>new MainMenu($interval));
-
+console.log(115600,'jvxxdfffdhhhhpppesrwwwddd');
 export default mainModule;
 /////////////removes at the en of application
 if (module.hot) {
   module.hot.accept();
+  /*module.hot.check((err, updatedModules)=>{
+    console.log(' cualos ???? ', updatedModules);
+  });*/
 }
