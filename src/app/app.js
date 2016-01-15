@@ -5,15 +5,18 @@ import angularMaterial from 'angular-material';
 import angularUIRouter from 'angular-ui-router';
 import AppCtrl from './controller/AppCtrl';
 import MainMenu from './directives/MainMenu';
-import Router from './state/Router';
+import RouterHelper from './helpers/RouterHelper';
+import TwitterRest from './factories/TwitterRest';
 
 const mainModule = angular.module('ats.main', [
     angularMaterial,
     angularUIRouter
 ]);
-mainModule.config(($stateProvider, $urlRouterProvider)=>new Router($stateProvider, $urlRouterProvider));
-mainModule.controller('AppCtrl', AppCtrl);
-mainModule.directive('mainMenu', ($interval)=>new MainMenu($interval));
+mainModule.config(($stateProvider, $urlRouterProvider)=>new RouterHelper($stateProvider, $urlRouterProvider))
+  .controller('AppCtrl', AppCtrl)
+  .factory('twitterRest', TwitterRest)
+  .directive('mainMenu', ($interval)=>new MainMenu($interval));
+
 export default mainModule;
 /////////////removes at the en of application
 if (module.hot) {

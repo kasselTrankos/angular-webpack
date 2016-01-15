@@ -1,6 +1,12 @@
 import {Router} from './../utils/Decorators';
+import HomeController from './controller/homeController';
 
-@Router('/', '<h1>{{title}}</h1>')
+@Router({
+  url: "/",
+  template: '<p>{{vm.title}}, alvaro',
+  controller: HomeController,
+  controllerAs:'vm'
+})
 export default class Home {
   constructor() {
   }

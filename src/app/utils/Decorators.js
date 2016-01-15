@@ -1,10 +1,7 @@
 const Router = (...args) =>{
   const decorator = (target)=>{
-    const [url, template] = args;
-    let params = {};
-    if(url) params.url = url;
-    if(template) params.template = template;
-    target.prototype.routeParams = params
+    if(typeof args !== 'object') throw new Error('the argument must be an object');
+    target.prototype.routeParams = args[0];
   }
   return decorator;
 }

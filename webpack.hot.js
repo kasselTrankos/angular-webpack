@@ -1,9 +1,5 @@
 var path = require('path'),
 webpack = require("webpack");
-    //libPath = path.join(__dirname, 'src/app'),
-    //wwwPath = path.join(__dirname, 'public', 'assets'),
-    //pkg = require('./package.json'),
-    //HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     entry: [
@@ -40,21 +36,9 @@ module.exports = {
       }]
     },
     plugins: [
-        // HtmlWebpackPlugin: Simplifies creation of HTML files to serve your webpack bundles : https://www.npmjs.com/package/html-webpack-plugin
-        /*new HtmlWebpackPlugin({
-            filename: 'index.html',
-            pkg: pkg,
-            template: path.join(libPath, 'index.html')
-        }),*/
-
-        // OccurenceOrderPlugin: Assign the module and chunk ids by occurrence count. : https://webpack.github.io/docs/list-of-plugins.html#occurenceorderplugin
         new webpack.optimize.OccurenceOrderPlugin(),
-
-        // Deduplication: find duplicate dependencies & prevents duplicate inclusion : https://github.com/webpack/docs/wiki/optimization#deduplication
         new webpack.optimize.DedupePlugin(),
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoErrorsPlugin()
     ]
 };
-
-//module.exports = config;
