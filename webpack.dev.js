@@ -1,7 +1,9 @@
 var webpack = require('webpack');
+var BowerWebpackPlugin = require("bower-webpack-plugin");
 var path  =require('path');
 var host = 'localhost';
 var port = '3000';
+
 console.log(path.join(__dirname, "bower_components"));
 module.exports = {
   context: __dirname,
@@ -15,6 +17,9 @@ module.exports = {
     path: path.resolve(__dirname, 'public'),
     publicPath: '/assets/',
     filename: 'main.js'
+  },
+  resolve: {
+    root: [path.join(__dirname, "bower_components")]
   },
   module: {
     loaders: [{
@@ -45,6 +50,9 @@ module.exports = {
     }]
   },
   plugins: [
+    new webpack.ResolverPlugin(
+      new webpack.ResolverPlugin.DirectoryDescriptionFilePlugin("bower.json", ["main"])
+    ),
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin()

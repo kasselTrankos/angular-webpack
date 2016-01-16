@@ -15,6 +15,7 @@ module.exports = {
     publicPath: '/',
     filename: 'main.js'
   },
+  resolve: baseConfiguration.resolve,
   module: baseConfiguration.module,
   plugins: baseConfiguration.plugins
 }

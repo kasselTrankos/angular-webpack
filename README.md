@@ -14,3 +14,5 @@ For Dev, run:
 npm run dev
 ```
 This create once compiled js, and then start de hmr server of webpack.
+
+To use angular-sanitize, you must import the index, it was made for commonjs.
