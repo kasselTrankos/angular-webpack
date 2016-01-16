@@ -2,7 +2,7 @@ var webpack = require('webpack');
 var path  =require('path');
 var host = 'localhost';
 var port = '3000';
-console.log(__dirname, ' popopo');
+console.log(path.join(__dirname, "bower_components"));
 module.exports = {
   context: __dirname,
   devtool: '#source-map',
@@ -36,7 +36,8 @@ module.exports = {
       loader: "style!css!autoprefixer!sass"
     }, {
       test: /\.js$/,
-      exclude: /(node_modules)/,
+      exclude: /(node_modules|bower_components)/,
+      //include: /(node_modules\/angular-translate)/,
       loader: "ng-annotate!babel"
     }, {
       test: [/fontawesome-webfont\.svg/, /fontawesome-webfont\.eot/, /fontawesome-webfont\.ttf/, /fontawesome-webfont\.woff/, /fontawesome-webfont\.woff2/],

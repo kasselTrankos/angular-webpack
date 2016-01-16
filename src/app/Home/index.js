@@ -1,9 +1,10 @@
 import {Router} from './../utils/Decorators';
 import HomeController from './controller/homeController';
+import template from './templates/home.content.html';
 
 @Router({
   url: "/",
-  template: '<p>{{vm.title}}, alvaro',
+  template: template,
   controller: HomeController,
   controllerAs:'vm'
 })
