@@ -19,7 +19,7 @@ const mainModule = angular.module('ats.main', [
     angularTranslate,
     angularSanitize,
     angularStaticFilesloader
-]);console.log(angularMaterial, angularUIRouter, angularTranslate, angularStaticFilesloader, angularSanitize);
+]);
 mainModule
   .config(($stateProvider, $urlRouterProvider)=>new RouterHelper($stateProvider, $urlRouterProvider))
   .config(($translateProvider)=>new TranslationHelper($translateProvider))

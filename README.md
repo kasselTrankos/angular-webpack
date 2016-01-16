@@ -1,4 +1,4 @@
-# ANGULAR/WEBPACK/ES6
+# ANGULAR/WEBPACK/ES6/KARMA
 
 [![Join the chat at https://gitter.im/kasselTrankos/angular-webpack-ES6-Karma](https://badges.gitter.im/kasselTrankos/angular-webpack-ES6-Karma.svg)](https://gitter.im/kasselTrankos/angular-webpack-ES6-Karma?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
@@ -13,6 +13,10 @@ For Dev, run:
 ```bash
 npm run dev
 ```
-This create once compiled js, and then start de hmr server of webpack.
+This create once compiled js, and then start de hmr server of webpack. But i can use other forces from webpack like:
+- Inyectation and compilation with Babel , ES 6 and ES7
+- Optimization of code.
+- Server by express with hot-middleware
+- Proxy with express
 
 To use angular-sanitize, you must import the index, it was made for commonjs.
