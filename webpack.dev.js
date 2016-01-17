@@ -19,7 +19,8 @@ module.exports = {
     filename: 'main.js'
   },
   resolve: {
-    root: [path.join(__dirname, "bower_components")]
+    root: [path.join(__dirname, "bower_components"), path.resolve(__dirname, "src", "app")],
+    extensions: ['', '.js']
   },
   module: {
     loaders: [{

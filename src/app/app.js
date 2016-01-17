@@ -6,11 +6,11 @@ import angularStaticFilesloader from 'angular-translate-loader-static-files';
 import angularSanitize from 'angular-sanitize/index.js';
 import angularMaterial from 'angular-material';
 import angularUIRouter from 'angular-ui-router';
-import AppCtrl from './controllers/AppCtrl';
-import MainMenu from './directives/MainMenu';
-import RouterHelper from './helpers/RouterHelper';
-import TwitterRestProvider from './providers/TwitterRestProvider';
-import TranslationHelper from './helpers/TranslationHelper';
+import AppCtrl from 'controllers/AppCtrl';
+import MainMenu from 'directives/MainMenu';
+import RouterHelper from 'helpers/RouterHelper';
+import TwitterRestProvider from 'providers/TwitterRestProvider';
+import TranslationHelper from 'helpers/TranslationHelper';
 
 
 const mainModule = angular.module('ats.main', [
@@ -22,8 +22,7 @@ const mainModule = angular.module('ats.main', [
 ]);
 mainModule
   .config(($stateProvider, $urlRouterProvider)=>new RouterHelper($stateProvider, $urlRouterProvider))
-  .config(($translateProvider)=>new TranslationHelper($translateProvider))
-  .provider('TwitterRest', TwitterRestProvider)
+  .config(($translateProvider)=>new TranslationHelper($translateProvider))  
   .directive('mainMenu', ($interval)=>new MainMenu($interval))
   .controller('AppCtrl', AppCtrl);
 

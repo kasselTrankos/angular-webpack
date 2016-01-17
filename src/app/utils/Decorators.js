@@ -1,3 +1,5 @@
+import 'angular/angular.js';
+
 const Router = (...args) =>{
   const decorator = (target)=>{
     if(typeof args !== 'object') throw new Error('the argument must be an object');
@@ -7,11 +9,16 @@ const Router = (...args) =>{
 };
 
 const Bootstrap = (...args)=>{
-  const elm = document.querySelector('[ng-app]');
-  const nameAngular = elm.getAttribute('ng-app');
-  console.log(nameAngular);
+  const [nameAngular] = args;
   const decorator = (target)=>{
+    if(/provider/i.test(target.name)) {
+      const [name, provider] = target.name.match(/(\w+)(provider)/i);
+
+      console.log(' append antes o despues tu diraás!!', name, provider);
+      angular.module('ng').provider(provider.toLowerCase(), target);
+    }
 
   }
+  return decorator;
 };
 export {Router, Bootstrap}
