@@ -2,11 +2,16 @@ export default class HomeCtrl {
   /**
   * Constructor class AppCtrl
   *
-  * @param {object} $scope
+  * @param {object} TwitterRest
   */
-  constructor() {
+  constructor(TwitterRest) {
+    'ngInject';
     let vm = this;
     vm.little = 'reload';
     vm.name = '12';
+    vm.accounts = TwitterRest.loadAccounts();
+  }
+  loadAccounts(){
+
   }
 }

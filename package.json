@@ -8,11 +8,12 @@
     "hot": "better-npm-run hot",
     "dev": "better-npm-run dev",
     "run-hot-twitter": "concurrent \"node babel.twitter\" \"node hot\"",
+    "run-dev-twitter": "concurrent \"node babel.twitter\" \"node dev\"",
     "watch-server": "better-npm-run watch-server"
   },
   "betterScripts": {
     "dev": {
-      "command": "node_modules/.bin/webpack --progress --config webpack.build.js && node dev",
+      "command": "node_modules/.bin/webpack --progress --config webpack.build.js && npm run run-dev-twitter",
       "env": {
         "PROCESS_PATH": "/public",
         "NODE_ENV": "development",
@@ -85,12 +86,14 @@
     "file-loader": "^0.8.5",
     "html-loader": "^0.4.0",
     "html-webpack-plugin": "^2.6.1",
+    "http-proxy": "^1.12.0",
     "mongoose": "^4.3.6",
     "ng-annotate-loader": "0.0.10",
     "ng-annotate-webpack-plugin": "^0.1.2",
     "ng-cache-loader": "0.0.15",
     "ngtemplate-loader": "^1.3.1",
     "piping": "^0.3.0",
+    "proxy-middleware": "^0.15.0",
     "sass-loader": "^3.1.2",
     "style-loader": "^0.13.0",
     "twit": "^2.1.1",
