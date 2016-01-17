@@ -4,9 +4,9 @@ export default class HomeCtrl {
   *
   * @param {object} $scope
   */
-  constructor($scope) {
-    'ngInject';
+  constructor() {
     let vm = this;
-    vm.title = 'Alvaro inyectando con control';
+    vm.little = 'reload';
+    vm.name = '12';
   }
 }

@@ -24,11 +24,7 @@ mainModule
   .config(($stateProvider, $urlRouterProvider)=>new RouterHelper($stateProvider, $urlRouterProvider))
   .config(($translateProvider)=>new TranslationHelper($translateProvider))
   .controller('AppCtrl', AppCtrl)
-  .factory('twitterRest', TwitterRest)
+  .factory('twitterRest', ()=>new TwitterRest())
   .directive('mainMenu', ($interval)=>new MainMenu($interval));
 
 export default mainModule;
-/////////////removes at the en of application
-if (module.hot) {
-  module.hot.accept();
-}

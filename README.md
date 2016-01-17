@@ -20,3 +20,6 @@ This create once compiled js, and then start de hmr server of webpack. But i can
 - Proxy with express
 
 To use angular-sanitize, you must import the index, it was made for commonjs.
+
+I've tried to use [Angular-HMR](https://github.com/yargalot/Angular-HMR), but i cant make run with ES7
+so any help with HRM will acepted.

@@ -3,10 +3,13 @@ export default class AppCtrl {
   * Constructor class AppCtrl
   *
   * @param {object} $scope
+  * @param {object} $state
   */
-  constructor($scope) {
+  constructor($scope, $state) {
     'ngInject';
     let vm = this;
-    vm.name = 'Juan echa';
+    //$scope.magia =14;
+    console.log(arguments, ' in AppCytl')
   }
+  static $inject = [];
 }
