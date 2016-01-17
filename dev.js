@@ -25,6 +25,5 @@ new WebpackDevServer(compiler,  {
 }).listen(port, host, function (err) {
   if(err)
     return console.log(err);
-
   console.log('Listening at ' + host + ':' + port);
 });

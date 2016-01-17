@@ -1,7 +1,7 @@
 import express from 'express';
 import session from 'express-session';
 import bodyParser from 'body-parser';
-import config from '../src/config';
+import config from './config';
 import * as post from './actions/post';
 import * as get from './actions/get';
 import {mapUrl, middleware} from './utils/url.js';

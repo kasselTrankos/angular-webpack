@@ -7,6 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "hot": "better-npm-run hot",
     "dev": "better-npm-run dev",
+    "run-hot-twitter": "concurrent \"node babel.twitter\" \"node hot\"",
     "watch-server": "better-npm-run watch-server"
   },
   "betterScripts": {
@@ -20,7 +21,7 @@
       }
     },
     "hot": {
-      "command": "node_modules/.bin/webpack --progress --config webpack.hot && node hot",
+      "command": "node_modules/.bin/webpack --progress --config webpack.hot && npm run run-hot-twitter",
       "env": {
         "PORT": 3000,
         "HOST": "localhost"
@@ -67,19 +68,24 @@
     "babel-plugin-ng-annotate": "^0.2.3",
     "babel-plugin-transform-decorators": "^6.4.0",
     "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "babel-polyfill": "^6.3.14",
     "babel-preset-es2015": "^6.3.13",
     "babel-preset-stage-0": "^6.3.13",
     "babel-preset-stage-1": "^6.3.13",
     "better-npm-run": "0.0.5",
+    "body-parser": "^1.14.2",
     "bower-webpack-plugin": "^0.1.9",
     "browser-sync": "^2.11.0",
     "clean-webpack-plugin": "^0.1.6",
     "concurrently": "^1.0.0",
+    "connect-redis": "^3.0.2",
     "css-loader": "^0.23.1",
+    "express-session": "^1.13.0",
     "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.8.5",
     "html-loader": "^0.4.0",
     "html-webpack-plugin": "^2.6.1",
+    "mongoose": "^4.3.6",
     "ng-annotate-loader": "0.0.10",
     "ng-annotate-webpack-plugin": "^0.1.2",
     "ng-cache-loader": "0.0.15",
@@ -87,6 +93,7 @@
     "piping": "^0.3.0",
     "sass-loader": "^3.1.2",
     "style-loader": "^0.13.0",
+    "twit": "^2.1.1",
     "url-loader": "^0.5.7",
     "webpack-dev-server": "^1.14.0",
     "webpack-hot-middleware": "^2.6.0"
