@@ -9,11 +9,10 @@ const initialState = {
 };
 
 const Twitter = (state=initialState)=> {
-  console.log('initial ', state);
   return {
-    load: (account)=>{
+    load: ()=>{
       state.loading = true;
-      account.loadAllAccounts()
+      state.factory.loadAllAccounts()
       .then((data)=>{
         state.data = data;
         state.loading = false;
@@ -21,8 +20,19 @@ const Twitter = (state=initialState)=> {
         state.error = e;
         state.loading = false;
       });
-
+    },
+    save: (account)=>{
+      state.loading = true;
+      state.factory.saveNewAccount(account)
+      .then((data)=>{
+        state.data = data;
+        state.loading = false;
+      }).catch((e)=>{
+        state.error = e;
+        state.loading = false;
+      });
     }
   }
 }
+//Twitter['$inject'] = ['account']
 export {Twitter};

@@ -13,6 +13,13 @@ For Dev, run:
 ```bash
 npm run dev
 ```
+
+Uses Redis as session of node.
+so you need to install and then do run:
+```bash
+redis-server
+```
+
 This create once compiled js, and then start de hmr server of webpack. But i can use other forces from webpack like:
 - Inyectation and compilation with Babel , ES 6 and ES7
 - Optimization of code.

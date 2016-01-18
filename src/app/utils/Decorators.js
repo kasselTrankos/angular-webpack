@@ -17,6 +17,7 @@ const connect = (...args)=>{
       .replace(/=[^,]+/g,'') // strip any ES6 defaults
       .split(',').filter(Boolean); // split & filter [""]
     }
+    //console.log(millon, ' ARGS ',args);
     const nameAssocitatedTo = $args(func)[0];
     target.prototype[nameAssocitatedTo] = func();
     const methods = factory(target.prototype[nameAssocitatedTo]);

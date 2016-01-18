@@ -21,9 +21,11 @@ const mainModule = angular.module('ats.main', [
     angularStaticFilesloader
 ]);
 mainModule
+  .constant('server', {host: 'localhost', port: '3001', service: 'apitwitter'})
   .config(($stateProvider, $urlRouterProvider)=>new RouterHelper($stateProvider, $urlRouterProvider))
-  .config(($translateProvider)=>new TranslationHelper($translateProvider))  
+  .config(($translateProvider)=>new TranslationHelper($translateProvider))
   .directive('mainMenu', ($interval)=>new MainMenu($interval))
+
   .controller('AppCtrl', AppCtrl);
 
 export default mainModule;
