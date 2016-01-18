@@ -24,10 +24,8 @@ export default class TwitterProvider {
         this.store.loading = true;
         account.loadAllAccounts()
         .then((data)=>{
-          this.store.coco= 'anda por aqui'
           this.store.accounts = data;
           this.store.loading = false;
-          console.log(data, 'loaderd',this.store.data);
         }).catch((e)=>{
           this.store.error = e;
           this.store.loading = false;
@@ -36,23 +34,4 @@ export default class TwitterProvider {
       }
     }
   }
-  /*
-  $get($http, $q) {
-    'ngInject';
-    return{
-      loadAccounts: ()=>{
-        console.log('call fro', $http);
-        var def = $q.defer();
-        $http.get("http://localhost:3001/apitwitter/account")
-        .success(function(data) {
-          service.albums = data;
-          def.resolve(data);
-        })
-        .error(function() {
-          def.reject("Failed to get accounts");
-        });
-        return def.promise;
-      }
-    };
-  }*/
 }
