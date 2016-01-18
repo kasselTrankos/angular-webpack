@@ -15,8 +15,8 @@
     </form>
   </div>
   <div flex="90">
-    <p ng-show="vm.loading">Cargando las cuentas</p>
-    <p ng-show="vm.error">Error en la carga, {{vm.error}}</p>
-    <md-button ng-repeat="account in vm.accounts track by $index" class="account-button">{{account.account}}</md-button>
+    <p ng-show="vm.accounts.loading">Cargando las cuentas</p>
+    <p ng-show="vm.accounts.error">Error en la carga, {{vm.accounts.error}}</p>
+    <md-button ng-repeat="account in vm.accounts.data track by $index" class="account-button">{{account.account}}</md-button>
   </div>
 </div>

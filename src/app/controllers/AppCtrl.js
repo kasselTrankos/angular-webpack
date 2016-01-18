@@ -7,9 +7,7 @@ export default class AppCtrl {
   */
   constructor($scope, $state) {
     'ngInject';
-    let vm = this;
-    //$scope.magia =14;
-    console.log($state, $scope, ' in AppCytl')
+    let vm = this;   
   }
   static $inject = [];
 }

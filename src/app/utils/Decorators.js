@@ -7,6 +7,24 @@ const Router = (...args) =>{
   }
   return decorator;
 };
+const connect = (...args)=>{
+  const [func, factory] = args;
+  const decorator=(target)=>{
+    const $args = (func)=>{
+      return (func+'').replace(/\s+/g,'')
+      .replace(/[/][*][^/*]*[*][/]/g,'') // strip simple comments
+      .split('){',1)[0].replace(/^[^(]*[(]/,'') // extract the parameters
+      .replace(/=[^,]+/g,'') // strip any ES6 defaults
+      .split(',').filter(Boolean); // split & filter [""]
+    }
+    const nameAssocitatedTo = $args(func)[0];
+    target.prototype[nameAssocitatedTo] = func();
+    const methods = factory(target.prototype[nameAssocitatedTo]);
+    for(var attrName in methods)
+      target.prototype[nameAssocitatedTo][attrName] = methods[attrName];
+  }
+  return decorator;
+};
 
 const Bootstrap = ()=>{
   const decorator = (target)=>{
@@ -41,7 +59,7 @@ const Bootstrap = ()=>{
 
         return factoryArray;
     }
-    
+
     if(/provider/i.test(target.name)) {
       const [name, provider] = target.name.match(/(\w+)(provider)/i);
       angular.module('ng').provider(provider.toLowerCase(), target);
@@ -56,4 +74,4 @@ const Bootstrap = ()=>{
   }
   return decorator;
 };
-export {Router, Bootstrap}
+export {Router, Bootstrap, connect}
