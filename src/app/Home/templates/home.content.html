@@ -6,11 +6,13 @@
 <div layout="row" layout-wrap  layout-align="center center">
   <div  flex="90">
     <p>{{'CONTENT.TITLE_TWITTER_ACCOUNT' | translate}}</p>
+    <form action="http://localhost:3001/account" maethod="POST" ng-submit="vm.addAccount($event);">
     <md-input-container class="md-block">
       <label>{{'CONTENT.FORM.LABEL_ACCOUNT' | translate}}</label>
       <input type="text" ng-model="vm.account" required md-maxlength="15">
     </md-input-container>
-    <md-button class="md-raised md-primary" ng-bind-html="'CONTENT.FORM.SUBMIT' | translate"></md-button>
+    <md-button class="md-raised md-primary" ng-bind-html="'CONTENT.FORM.SUBMIT' | translate" type="submit"></md-button>
+    </form>
   </div>
   <div flex="90">
     <p ng-show="vm.loading">Cargando las cuentas</p>

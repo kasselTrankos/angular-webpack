@@ -11,5 +11,11 @@ export default class HomeCtrl {
     let vm = this;
     twitter.connect(vm);
     twitter.loadAccounts();
+    vm.addAccount = this.addAccount;
+  }
+  addAccount(e){
+    console.log('works fine, but es is like not for angular 1.x',e);
+    e.preventDefault();
+    return false;
   }
 }
