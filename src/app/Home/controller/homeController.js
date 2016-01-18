@@ -12,7 +12,13 @@ export default class HomeCtrl {
     vm.little = 'reload';
     vm.name = '12';
     console.log('automatic inject');
-    //vm.accounts = TwitterRest.loadAccounts();
+    twitter.connect(vm);
+    /*vm.accounts = twitter.Accounts.data;
+    vm.loading = twitter.Accounts.loading
+    vm.error = twitter.Accounts.error*/
+    twitter.loadAccounts();
+    console.log(' will work', vm, twitter.Accounts);
+
   }
   loadAccounts(){
 

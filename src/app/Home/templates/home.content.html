@@ -1,10 +1,19 @@
+<style>
+  .account-button{
+    text-transform:none;
+  }
+</style>
 <div layout="row" layout-wrap  layout-align="center center">
   <div  flex="90">
     <p>{{'CONTENT.TITLE_TWITTER_ACCOUNT' | translate}}</p>
-    <p>is other to show1{{vm.name}}ñ</p>
     <md-input-container class="md-block">
       <label>{{'CONTENT.FORM.LABEL_ACCOUNT' | translate}}</label>
       <input type="text" ng-model="vm.account" required md-maxlength="15">
     </md-input-container>
+  </div>
+  <div flex="90">
+    <p ng-show="vm.loading">Cargando las cuentas</p>
+    <p ng-show="vm.error">Error en la carga, {{vm.error}}</p>
+    <md-button ng-repeat="account in vm.accounts track by $index" class="account-button">{{account.account}}</md-button>
   </div>
 </div>
