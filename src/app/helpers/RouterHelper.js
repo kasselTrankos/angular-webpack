@@ -4,7 +4,6 @@ import Account from 'Account';
 export default class RouterHelper {
 
   constructor($stateProvider, $urlRouterProvider) {
-    console.log(new Account().routeParams);
     $stateProvider
     .state("home", new Home().routeParams)
     .state("account", new Account().routeParams);

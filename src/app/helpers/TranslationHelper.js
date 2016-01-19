@@ -1,7 +1,5 @@
 export default class TranslationHelper {
   constructor($translateProvider){
-    console.log($translateProvider, 'lo popdiemo');
-
     $translateProvider.useStaticFilesLoader({
       prefix: '/assets/i18n/locale-',
       suffix: '.json'
@@ -13,7 +11,5 @@ export default class TranslationHelper {
     })
     .useSanitizeValueStrategy('sanitize')
     .preferredLanguage('es');
-
-    // $translationProvider.defaultLanguage("es");
   }
 }

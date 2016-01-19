@@ -1,8 +1,9 @@
 export default class AccountCtrl {
 
-  constructor() {
+  constructor($stateParams) {
+    'ngInject';
     let vm  = this;
-    console.log('cambia la vista please');
+    vm.nameAccount = $stateParams.account;
   }
 
 }
