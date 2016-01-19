@@ -15,17 +15,12 @@ export default class HomeCtrl {
   */
   constructor(account) {
     'ngInject';
-
-    console.log(' analizalo bien HOME IS')
     let vm = this;
-
     vm.accounts.factory = account;
-    vm.accounts.load(account);
+    vm.accounts.load();
 
   }
   addAccount(e, _that){
-
-    console.log('works fine, but es is like not for angular 1.x',_that.vm.account, _that.account);
     _that.vm.accounts.save(_that.vm.account);
     e.preventDefault();
     return false;

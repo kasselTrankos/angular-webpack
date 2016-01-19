@@ -1,6 +1,5 @@
 
 import AccountStore from './store/AccountStore';
-import AccountFactory from './factories/AccountFactory';
 
 const initialState = {
   loading: true,
@@ -9,11 +8,13 @@ const initialState = {
 };
 
 const Twitter = (state=initialState)=> {
+
   return {
     load: ()=>{
       state.loading = true;
       state.factory.loadAllAccounts()
       .then((data)=>{
+        console.log(state, 'ajoa ');
         state.data = data;
         state.loading = false;
       }).catch((e)=>{

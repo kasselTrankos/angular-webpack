@@ -22,7 +22,7 @@ const mainModule = angular.module('ats.main', [
 ]);
 mainModule
   .constant('server', {host: 'localhost', port: '3001', service: 'apitwitter'})
-  .config(($stateProvider, $urlRouterProvider)=>new RouterHelper($stateProvider, $urlRouterProvider))
+  .config(($stateProvider, $urlRouterProvider, $locationProvider)=>new RouterHelper($stateProvider, $urlRouterProvider, $locationProvider))
   .config(($translateProvider)=>new TranslationHelper($translateProvider))
   .directive('mainMenu', ($interval)=>new MainMenu($interval))
 
