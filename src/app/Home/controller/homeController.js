@@ -1,4 +1,4 @@
-import {Twitter} from 'twitter';
+import {Account} from 'twitter';
 import {connect} from 'utils/Decorators';
 import AccountFactory from 'twitter/factories/AccountFactory';
 
@@ -6,12 +6,12 @@ import AccountFactory from 'twitter/factories/AccountFactory';
   loading: false,
   error: false,
   data:{}
-}), Twitter)
+}), Account)
 export default class HomeCtrl {
   /**
   * Constructor class AppCtrl
   *
-  * @param {object} TwitterRest
+  * @param {object} account
   */
   constructor(account) {
     'ngInject';

@@ -9,7 +9,9 @@ const Router = (...args) =>{
 };
 const connect = (...args)=>{
   const [func, factory] = args;
+
   const decorator=(target)=>{
+    target = ( Object.prototype.toString.call( target ) === '[object Array]' ) ? target[target.length-1] : target;
     const $args = (func)=>{
       return (func+'').replace(/\s+/g,'')
       .replace(/[/][*][^/*]*[*][/]/g,'') // strip simple comments

@@ -8,9 +8,7 @@ import angularMaterial from 'angular-material';
 import angularUIRouter from 'angular-ui-router';
 import AppCtrl from 'controllers/AppCtrl';
 import MainMenu from 'directives/MainMenu';
-import RouterHelper from 'helpers/RouterHelper';
-import TwitterRestProvider from 'providers/TwitterRestProvider';
-import TranslationHelper from 'helpers/TranslationHelper';
+import {ThemeColorsHelper, RouterHelper, TranslationHelper} from 'helpers';
 
 
 const mainModule = angular.module('ats.main', [
@@ -22,6 +20,7 @@ const mainModule = angular.module('ats.main', [
 ]);
 mainModule
   .constant('server', {host: 'localhost', port: '3001', service: 'apitwitter'})
+  .config(($mdThemingProvider)=> new ThemeColorsHelper($mdThemingProvider))
   .config(($stateProvider, $urlRouterProvider, $locationProvider)=>new RouterHelper($stateProvider, $urlRouterProvider, $locationProvider))
   .config(($translateProvider)=>new TranslationHelper($translateProvider))
   .directive('mainMenu', ($interval)=>new MainMenu($interval))
