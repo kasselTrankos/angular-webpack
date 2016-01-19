@@ -13,6 +13,11 @@ try {
 require("babel-polyfill");
 require("babel-core/register")(config);
 
+if (process.env.NODE_ENV !== "production") {
+	if (!require("piping")({hook: true, includeModules: false})) {
+		return;
+	}
+}
 
 try {
 	require("./twitter");

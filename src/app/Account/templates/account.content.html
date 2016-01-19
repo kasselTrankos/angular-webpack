@@ -1,3 +1,30 @@
+<style>
+  .tweet{
+    margin: 10px 0px;
+
+    background: #fff;
+    border-radius: 2px;
+    display: block;
+    float: left;
+    position: relative;
+    padding: 10px 8px;
+
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    transition: all 0.2s ease-in-out;
+  }
+  .tweet a{color:#58630a; text-decoration: none;}
+</style>
 <div layout="row" layout-wrap  layout-align="center center">
   <p ng-bind-html="'ACCOUNT.TEXT_INTRO_NAME' | translate:vm" />
+</div>
+<div layout="row" layout-wrap  layout-align="center center">
+  <p ng-show="vm.tweets.loading">Cargando las cuentas</p>
+  <p ng-show="vm.tweets.error">Error en la carga, {{vm.tweets.error}}</p>
+  <div layout="row" layout-wrap  layout-align="space-between" flex="90">
+    <div flex="30" ng-repeat="tweet in vm.tweets.data track by $index"
+     class="tweet md-caption" >
+     <p ng-bind-html="tweet.text | twitterText" />
+    </div>
+  </div>
+
 </div>

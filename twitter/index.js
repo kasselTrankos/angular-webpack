@@ -39,8 +39,9 @@ app.post('/account', (req, res)=>{
 app.get('/tweet/*', (req, res)=>{
   middleware(req, res, get);
 });
-
+/*
 app.use((req, res) => {
+  console.log(' why pass by here???');
   const splittedUrlPath = req.url.split('?')[0].split('/').slice(1);
   const {action, params} = mapUrl(actions, splittedUrlPath);
 
@@ -64,7 +65,7 @@ app.use((req, res) => {
     res.status(404).end('NOT FOUND');
   }
 });
-
+*/
 
 const bufferSize = 100;
 const messageBuffer = new Array(bufferSize);

@@ -19,7 +19,24 @@ export const close = ()=>{
 }
 
 export const connect = ()=> {
-  Mongoose.connect(urlDatabase);
+  const mongoOptions =
+  {
+      db: {safe: true},
+      server: {
+          socketOptions: {
+              keepAlive: 1
+          }
+      },
+      replset: {
+          rs_name: 'myReplSet',
+          socketOptions: {
+              keepAlive: 1
+          }
+      }
+  };
+
+  //Mongoose.connection.close(function () {});
+  Mongoose.connect(urlDatabase, mongoOptions);
 }
 export const TwitterToken = new Schema({
   access_token: {type: String, default: '', index:true},
