@@ -1,9 +1,7 @@
 export default class TwitterTextFilter{
-  
+
   constructor () {
     return (input) => {
-      console.log(input, 'teee');
-      console.log(input, 'test');
       return input
         .replace(/\b(?:https?|ftp):\/\/[a-z0-9-+&@#\/%?=~_|!:,.;]*[a-z0-9-+&@#\/%=~_|]/gim, ' <a href="$&" target="blank">$&</a>')
         .replace(/(^|[^\/])(www\.[\S]+(\b|$))/gim, '<a target="_blank" href="http://$2">$2</a>')
