@@ -1,13 +1,13 @@
-import Home from './../Home';
+import Home from 'Home';
+import Account from 'Account';
 
 export default class RouterHelper {
 
   constructor($stateProvider, $urlRouterProvider) {
-
-    $stateProvider.state("home", new Home().routeParams);
-    $urlRouterProvider
-      .when('/c?id', '/contacts/:id')
-      .when('/user/:id', '/contacts/:id')
-      .otherwise('/');
+    console.log(new Account().routeParams);
+    $stateProvider
+    .state("home", new Home().routeParams)
+    .state("account", new Account().routeParams);
+    $urlRouterProvider.otherwise('/');
   }
 }
