@@ -4,7 +4,7 @@
   "description": "ANGULAR/WEBPACK",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "node_modules/.bin/mocha -R spec",
     "hot": "better-npm-run hot",
     "dev": "better-npm-run dev",
     "run-hot-twitter": "concurrent \"node babel.twitter\" \"node hot\"",
@@ -40,14 +40,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kasselTrankos/angular-webpack.git"
+    "url": "git+https://github.com/kasselTrankos/angular-webpack-ES6-Karma.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/kasselTrankos/angular-webpack/issues"
+    "url": "https://github.com/kasselTrankos/angular-webpack-ES6-Karma/issues"
   },
-  "homepage": "https://github.com/kasselTrankos/angular-webpack#readme",
+  "homepage": "https://github.com/kasselTrankos/angular-webpack-ES6-Karma#readme",
   "dependencies": {
     "angular-animate": "^1.4.8",
     "angular-aria": "^1.4.8",
@@ -87,6 +87,7 @@
     "html-loader": "^0.4.0",
     "html-webpack-plugin": "^2.6.1",
     "http-proxy": "^1.12.0",
+    "mocha": "^2.3.4",
     "mongoose": "^4.3.6",
     "ng-annotate-loader": "0.0.10",
     "ng-annotate-webpack-plugin": "^0.1.2",
@@ -96,6 +97,7 @@
     "proxy-middleware": "^0.15.0",
     "q": "^1.4.1",
     "sass-loader": "^3.1.2",
+    "should": "^8.1.1",
     "style-loader": "^0.13.0",
     "twit": "^2.1.1",
     "url-loader": "^0.5.7",
