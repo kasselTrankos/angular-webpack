@@ -1,4 +1,4 @@
-require('babel-polyfill')///that for use ES6/7
+///require('babel-polyfill')///that for use ES6/7
 
 
 var should = require('should');
@@ -15,11 +15,10 @@ var chatUser1 = {'name':'Tom'};
 var chatUser2 = {'name':'Sally'};
 var chatUser3 = {'name':'Dana'};
 describe('Socket', function() {
-  describe('open', function () {
     it('Should broadcast new user to all users', function (done) {
       var client1 = io.connect(socketURL, options);
 
-    client1.on('connect', function(data){
+      client1.on('connect', function(data){
       client1.emit('connection name', chatUser1);
 
       /* Since first client is connected, we connect
@@ -49,6 +48,5 @@ describe('Socket', function() {
     });
 
     });
-  });
 
 });
