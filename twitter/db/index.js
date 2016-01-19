@@ -3,18 +3,18 @@ const urlDatabase = 'mongodb://localhost:27017/vera';
 export const Schema = Mongoose.Schema;
 /////////////event handler for mongoose
 Mongoose.connection.on('connected', function () {
-  console.log('Mongoose default connection open to twitter app');
+  //console.log('Mongoose default connection open to twitter app');
 });
 Mongoose.connection.on('error',function (err) {
   console.log('Mongoose default connection error: ' + err);
 });
 Mongoose.connection.on('disconnected', function () {
-  console.log('Mongoose default connection disconnected');
+  //console.log('Mongoose default connection disconnected');
 });
 
 export const close = ()=>{
   Mongoose.connection.close(function () {
-    console.log('Mongoose default connection disconnected through app termination');
+    //console.log('Mongoose default connection disconnected through app termination');
   });
 }
 

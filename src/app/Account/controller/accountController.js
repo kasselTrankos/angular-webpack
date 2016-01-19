@@ -1,5 +1,6 @@
 import {connect} from 'utils/Decorators';
 import {Tweet} from 'twitter';
+import TweetFactory from 'twitter/factories/TweetFactory';
 
 @connect((tweets)=>({
   loading: false,
@@ -8,9 +9,11 @@ import {Tweet} from 'twitter';
 }), Tweet)
 export default class AccountCtrl {
 
-  constructor($stateParams) {
+  constructor($stateParams, tweet) {
     'ngInject';
     let vm  = this;
+    vm.tweets.factory = tweet;
+    vm.tweets.load($stateParams.account);
     vm.nameAccount = $stateParams.account;
   }
 

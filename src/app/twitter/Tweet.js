@@ -6,8 +6,16 @@ const initialState = {
 
 const Tweet = (state=initialState)=> {
   return {
-    load: ()=>{
-      
+    load: (account)=>{
+      state.loading = true;
+      state.factory.loadAllTweetsFromAccount(account)
+      .then((data)=>{
+        state.data = data;
+        state.loading = false;
+      }).catch((e)=>{
+        state.error = e;
+        state.loading = false;
+      });
     }
 
   }

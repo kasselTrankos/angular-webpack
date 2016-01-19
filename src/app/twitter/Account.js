@@ -12,7 +12,6 @@ const Account = (state=initialState)=> {
       state.loading = true;
       state.factory.loadAllAccounts()
       .then((data)=>{
-        console.log(state, 'ajoa ');
         state.data = data;
         state.loading = false;
       }).catch((e)=>{

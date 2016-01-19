@@ -1,6 +1,6 @@
 export default class ThemeColorsHelper {
   constructor($mdThemingProvider){
-    
+
     $mdThemingProvider.definePalette('violet', {
       '50': '#ec71d4',
       '100': '#e22dc0',
@@ -96,10 +96,8 @@ export default class ThemeColorsHelper {
       'contrastDarkColors': '50 100 200 300 400 500 A100 A200 A400'
     });
 
-    $mdThemingProvider.theme('colorize')
-
-    	.primaryPalette('violet')
-
+    $mdThemingProvider.theme('default')
+    	.primaryPalette('green')
     	.accentPalette('high-violet');
       }
 }

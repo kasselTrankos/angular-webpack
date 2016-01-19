@@ -1,12 +1,12 @@
 import {client} from './twitter';
-export const Timeline = (screenName)=> {
-  console.log(client);
-  return new Promise((resolve, reject)=> {
-    client.get('statuses/user_timeline', {screen_name: screenName}, function(error, tweets, response){
-      ///console.log('ERROR.', error, ' TWEETS', tweets, ' RESPONS', response)
-      if(error) reject('Error, account whith error:"', error,"'" );
-      else  resolve(tweets);
-    });
-  });
+import Q from 'q';
+import {connect, close, TwitterTweetModel} from './../../db';
 
+export const Timeline = (screenName)=> {
+  const deferred = Q.defer();
+  client.get('statuses/user_timeline', {screen_name: screenName}, function(error, tweets, response){
+    if(error) deferred.reject('Error, account whith error:"', error,"'" );
+    else  deferred.resolve(tweets);
+  });
+  return deferred.promise;
 }

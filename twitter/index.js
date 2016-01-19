@@ -31,7 +31,6 @@ app.use(session({
 app.use(bodyParser.json());
 
 app.get('/account', (req, res)=>{
-  console.log('DAME COOO');
   middleware(req, res, get);
 });
 app.post('/account', (req, res)=>{
