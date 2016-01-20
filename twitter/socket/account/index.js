@@ -1,3 +1,4 @@
+import {InsertTweet} from './../../db';
 var Twit = require('twit');
 var portfinder = require('portfinder');
 var T = new Twit({
@@ -7,16 +8,23 @@ var T = new Twit({
   access_token_secret: 'cc2vaceKJAAOiAhKjc90VWqoMpi4Dmx27DIUtyUCEfx8r'
 })
 
-const Streaming = (account)=>{
-  portfinder.getPort(function (err, port) {
+const Streaming = (account, id, port)=>{
+  //portfinder.getPort(function (err, port) {
     console.log('¡ CONNECTED', port, ' Account is: ', account);
     var io = require('socket.io')(port);
     var stream = T.stream('user', { track: 'kasselTrankos' })
     stream.on('tweet', function(tweet){
-      io.emit('tweet', tweet);
-      console.log('TWEET nuevo ', tweet.text, ' ACCOUNT', account, 'port', port);
+
+      InsertTweet(tweet, account, id)
+      .then((doc)=>{
+        console.log('TWEET nuevo ', tweet.text, ' ACCOUNT', account, 'port', port);
+        io.emit('tweet', doc);
+      }).cacth((err)=>{
+        console.log('necesito trabajar los errores', err);
+      });
+
     });
-  });
+//  });
 }
 export {Streaming}
 //ademas guardar el puerto en session

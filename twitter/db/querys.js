@@ -45,3 +45,16 @@ export const PushMongoTimelineRest = (tweets, account, account_id)=>{
   });
   return deferred.promise;
 }
+//will be asociated to previous function, ( power of functional, complex before is update/insert and now not)
+export const InsertTweet = (tweet, account, id)=>{
+  let deferred = Q.defer();
+  tweet.account = account;
+  tweet.account_id = account_id;
+  TwitterTweetModel.insert(
+  tweet,
+  (err, doc)=> {
+    if(!err)  deferred.resolve(doc);
+    else deferred.reject(err);
+  });
+  return deferred.promise;
+}
