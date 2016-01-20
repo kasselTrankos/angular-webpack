@@ -1,4 +1,4 @@
-import {InsertTweet,GetIdFromAccount, connect} from './../../db';
+import {InsertTweet,GetIdFromAccount, connect, close} from './../../db';
 import {isPortOpen} from './../../utils/port';
 var Twit = require('twit');
 var portfinder = require('portfinder');
@@ -10,27 +10,27 @@ var T = new Twit({
 })
 
 const Streaming = (account, id, port)=>{
-  const isPortOpen = isPortOpen(port);
-  //portfinder.getPort(function (err, port) {
-    console.log('¡ CONNECTED', port, ' Account is: ', account);
+
+  //console.log('¡ CONNECTED', port, ' Account is: ', account);
     var io = require('socket.io')();
     var stream = T.stream('user', { track: 'kasselTrankos' })
     stream.on('tweet', function(tweet){
-      console.log(InsertTweet, ' joder ahora esto no es una jodida function', tweet.text);
       connect();//kjoder etalles molones q trane de cabeza
       GetIdFromAccount(account)
       .then((doc)=>{console.log(doc._id);return InsertTweet(tweet, account, doc._id)})
       .then((doc)=>{
-        console.log('TWEET nuevo ', tweet.text, ' ACCOUNT', account, 'port', port);
+        close();
         io.emit('tweet', doc);
       })
-      .catch((err)=>{
+      .catch((err)=>{close();
         console.log('necesito trabajar los errores', err);
       });
 
 
     });
-    if(!isPortOpen(port))io.listen(port);
+    console.log(isPortOpen(port), ' y el puerto es :',port);
+    //if(!isPortOpen(port))
+    io.listen(port);
 //  });
 }
 export {Streaming}

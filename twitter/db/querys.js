@@ -13,7 +13,6 @@ export const findAllTweetsByAccount = (account, sort={created_at:-1})=>{
   return deferred.promise;
 }
 export const GetIdFromAccount = (account)=>{
-  console.log('ACCOUNT', account, ' JOSR ');
   let deferred = Q.defer();
   TwitterAccountModel.findOne({
     account:account
@@ -63,10 +62,8 @@ export const InsertTweet = (tweet, account, account_id)=>{
 
   tweet.account_id = account_id;
   var Tweet = new TwitterTweetModel(tweet);
-  console.log('wehere save it', tweet.text);
   Tweet.save(
   (err, doc, numAffected)=> {
-    console.log('ERROR', err, ' TWEET SAVED???', doc, numAffected);
     if(!err)  deferred.resolve(doc);
     else deferred.reject(err);
   });
