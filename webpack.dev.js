@@ -10,7 +10,7 @@ module.exports = {
   devtool: '#source-map',
   entry:[
     'webpack-dev-server/client?http://' + host + ':' + port,
-    'angular-hot-loader?http://'+ host + ':' + port,
+    //'angular-hot-loader?http://'+ host + ':' + port,
     './src/app/app'
   ],
   output: {

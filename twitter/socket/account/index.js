@@ -14,7 +14,7 @@ const Streaming = (account, id, port)=>{
     var io = require('socket.io')(port);
     var stream = T.stream('user', { track: 'kasselTrankos' })
     stream.on('tweet', function(tweet){
-
+      console.log(InsertTweet)
       InsertTweet(tweet, account, id)
       .then((doc)=>{
         console.log('TWEET nuevo ', tweet.text, ' ACCOUNT', account, 'port', port);

@@ -5,10 +5,15 @@ const initialState = {
 };
 
 const Tweet = (state=initialState)=> {
+  let factory;
   return {
+    addFactory: (_factory)=>{
+      factory = _factory;
+      factory.socket();
+    },
     load: (account)=>{
       state.loading = true;
-      state.factory.loadAllTweetsFromAccount(account)
+      factory.loadAllTweetsFromAccount(account)
       .then((data)=>{
         state.data = data;
         state.loading = false;

@@ -6,7 +6,7 @@ import {Streaming} from './../../socket/account';
 ////////////////////Frist last data by RESt. Then open socket
 export const get = (req, params)=>{
   ///activate stream, a ver como va!!!
-  Streaming(params[0], parmas[1], 5000);
+  Streaming(params[0], params[1], 5000);
   connect();
   return Timeline(params[0])
   .then((docs)=>{

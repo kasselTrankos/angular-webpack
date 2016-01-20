@@ -9,7 +9,9 @@ export default class AccountFactory{
     this.$http = $http;
     this.$q = $q;
     this.url = `http://${server.host}:${server.port}/${server.service}`;
+    
   }
+
   loadAllAccounts(){
     var def = this.$q.defer();
     this.$http.get(`${this.url}/account`)
