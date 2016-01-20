@@ -51,8 +51,10 @@ export const InsertTweet = (tweet, account, account_id)=>{
   tweet.account = account;
   tweet.account_id = account_id;
   var Tweet = new TwitterTweetModel(tweet);
+  console.log('wehere save it', tweet.text);
   Tweet.save(
   (err, doc)=> {
+    console.log('ERROR', err, ' TWEET SAVED???', doc);
     if(!err)  deferred.resolve(doc);
     else deferred.reject(err);
   });

@@ -14,12 +14,12 @@ const Streaming = (account, id, port)=>{
     var io = require('socket.io')(port);
     var stream = T.stream('user', { track: 'kasselTrankos' })
     stream.on('tweet', function(tweet){
-      console.log(InsertTweet)
+      console.log(InsertTweet, ' joder ahora esto no es una jodida function', tweet.text)
       InsertTweet(tweet, account, id)
       .then((doc)=>{
         console.log('TWEET nuevo ', tweet.text, ' ACCOUNT', account, 'port', port);
         io.emit('tweet', doc);
-      }).cacth((err)=>{
+      }).catch((err)=>{
         console.log('necesito trabajar los errores', err);
       });
 
