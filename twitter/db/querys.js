@@ -1,9 +1,8 @@
 import Q from 'q';
-import {connect, close, TwitterTweetModel} from './index';
+import {connect, close,
+  TwitterTweetModel, TwitterAccountModel} from './index';
 export const findAllTweetsByAccount = (account, sort={created_at:-1})=>{
   let deferred = Q.defer();
-  console.log(account, 'ACCOUNT');
-  //connect();
   TwitterTweetModel.find({
     account:account
   }, 'text').sort(sort).exec((err, docs)=>{
@@ -11,6 +10,16 @@ export const findAllTweetsByAccount = (account, sort={created_at:-1})=>{
     else deferred.reject(err);
     close();
   });
+  return deferred.promise;
+}
+export const GetIdFromAccount = (account)=>{
+  let deferred = Q.defer();
+  TwitterAccountModel.findOne({
+    account:account
+  }, '_id', (err, doc)=>{
+    if(err) deferred.reject(err);
+    else deferred.resolve(doc);
+  })
   return deferred.promise;
 }
 export const PushMongoTimelineRest = (tweets, account, account_id)=>{
@@ -49,12 +58,13 @@ export const PushMongoTimelineRest = (tweets, account, account_id)=>{
 export const InsertTweet = (tweet, account, account_id)=>{
   let deferred = Q.defer();
   tweet.account = account;
+
   tweet.account_id = account_id;
   var Tweet = new TwitterTweetModel(tweet);
   console.log('wehere save it', tweet.text);
   Tweet.save(
-  (err, doc)=> {
-    console.log('ERROR', err, ' TWEET SAVED???', doc);
+  (err, doc, numAffected)=> {
+    console.log('ERROR', err, ' TWEET SAVED???', doc, numAffected);
     if(!err)  deferred.resolve(doc);
     else deferred.reject(err);
   });

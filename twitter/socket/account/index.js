@@ -1,4 +1,4 @@
-import {InsertTweet} from './../../db';
+import {InsertTweet,GetIdFromAccount} from './../../db';
 var Twit = require('twit');
 var portfinder = require('portfinder');
 var T = new Twit({
@@ -15,13 +15,16 @@ const Streaming = (account, id, port)=>{
     var stream = T.stream('user', { track: 'kasselTrankos' })
     stream.on('tweet', function(tweet){
       console.log(InsertTweet, ' joder ahora esto no es una jodida function', tweet.text)
-      InsertTweet(tweet, account, id)
+      GetIdFromAccount(account)
+      .then((doc)=>{console.log(doc._id);return InsertTweet(tweet, account, doc._id)})
       .then((doc)=>{
         console.log('TWEET nuevo ', tweet.text, ' ACCOUNT', account, 'port', port);
         io.emit('tweet', doc);
-      }).catch((err)=>{
+      })
+      .catch((err)=>{
         console.log('necesito trabajar los errores', err);
       });
+
 
     });
 //  });
