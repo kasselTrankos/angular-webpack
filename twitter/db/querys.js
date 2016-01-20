@@ -13,10 +13,12 @@ export const findAllTweetsByAccount = (account, sort={created_at:-1})=>{
   return deferred.promise;
 }
 export const GetIdFromAccount = (account)=>{
+  console.log('ACCOUNT', account, ' JOSR ');
   let deferred = Q.defer();
   TwitterAccountModel.findOne({
     account:account
-  }, '_id', (err, doc)=>{
+  }, '', (err, doc)=>{
+    console.log(account, 'get the id load', doc, 'ERR', err);
     if(err) deferred.reject(err);
     else deferred.resolve(doc);
   })
