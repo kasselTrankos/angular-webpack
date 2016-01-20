@@ -1,13 +1,18 @@
-language: node_js
-node_js:
-  - "4.1"
-  - "4.0"
-  - "0.12"
-  - "0.11"
-  - "0.10"
-  - "0.8"
-  - "0.6"
-sudo: false
-before_script:
+ language: node_js
+ node_js:
+   - "0.8"
+   - "0.10"
+env:
+  - CXX=g++-4.8
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - g++-4.8
+ before_install:
+  - export DISPLAY=:99.0
+    - sh -e /etc/init.d/xvfb start
   - npm install -g bower
   - bower install
+  - npm install

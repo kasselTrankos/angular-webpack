@@ -1,4 +1,5 @@
 import {InsertTweet,GetIdFromAccount, connect} from './../../db';
+import {isPortOpen} from './../../utils/port';
 var Twit = require('twit');
 var portfinder = require('portfinder');
 var T = new Twit({
@@ -9,9 +10,10 @@ var T = new Twit({
 })
 
 const Streaming = (account, id, port)=>{
+  const isPortOpen = isPortOpen(port);
   //portfinder.getPort(function (err, port) {
     console.log('¡ CONNECTED', port, ' Account is: ', account);
-    var io = require('socket.io')(port);
+    var io = require('socket.io')();
     var stream = T.stream('user', { track: 'kasselTrankos' })
     stream.on('tweet', function(tweet){
       console.log(InsertTweet, ' joder ahora esto no es una jodida function', tweet.text);
@@ -28,6 +30,7 @@ const Streaming = (account, id, port)=>{
 
 
     });
+    if(!isPortOpen(port))io.listen(port);
 //  });
 }
 export {Streaming}
