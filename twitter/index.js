@@ -10,7 +10,7 @@ import redisStore from 'connect-redis';
 import PrettyError from 'pretty-error';
 import http from 'http';
 import SocketIo from 'socket.io';
-
+import {Streaming} from './socket/account';
 const pretty = new PrettyError();
 const app = express();
 const RedisStore = redisStore(session);
@@ -39,33 +39,14 @@ app.post('/account', (req, res)=>{
 app.get('/tweet/*', (req, res)=>{
   middleware(req, res, get);
 });
-/*
-app.use((req, res) => {
-  console.log(' why pass by here???');
-  const splittedUrlPath = req.url.split('?')[0].split('/').slice(1);
-  const {action, params} = mapUrl(actions, splittedUrlPath);
+///aki una esencia de Streaming
 
-  if (action) {
-    action(req, params)
-      .then((result) => {
-        if (result instanceof Function) {
-          result(res);
-        } else {
-          res.json(result);
-        }
-      }, (reason) => {
-        if (reason && reason.redirect) {
-          res.redirect(reason.redirect);
-        } else {
-          console.error('API ERROR:', pretty.render(reason));
-          res.status(reason.status || 500).json(reason);
-        }
-      });
-  } else {
-    res.status(404).end('NOT FOUND');
-  }
+var serverSocket = require('http').createServer(app);
+Streaming(serverSocket);
+
+server.listen(5000, ()=>{
+  
 });
-*/
 
 const bufferSize = 100;
 const messageBuffer = new Array(bufferSize);

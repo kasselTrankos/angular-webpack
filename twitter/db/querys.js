@@ -17,7 +17,6 @@ export const GetIdFromAccount = (account)=>{
   TwitterAccountModel.findOne({
     account:account
   }, '', (err, doc)=>{
-    console.log(account, 'get the id load', doc, 'ERR', err);
     if(err) deferred.reject(err);
     else deferred.resolve(doc);
   })
