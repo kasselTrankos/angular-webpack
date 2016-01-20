@@ -8,9 +8,6 @@ node_js:
   - "0.8"
   - "0.6"
   - "iojs"
-branches:
-  only:
-    - angular
 before_script:
   - npm install -g bower
   - bower install
