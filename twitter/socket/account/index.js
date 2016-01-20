@@ -30,7 +30,7 @@ const Streaming = (account, id, port)=>{
     });
     console.log(isPortOpen(port), ' y el puerto es :',port);
     //if(!isPortOpen(port))
-    io.listen(port);
+    io.listen(port, {log:true});
 //  });
 }
 export {Streaming}
