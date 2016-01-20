@@ -21,13 +21,12 @@ app.get('/*', function(req, res) {
 //# -----your-webpack-dev-server------------------
 var server = new WebpackDevServer(webpack(config), {
   contentBase: "./public",
-  hot:true,
+  // hot:true,// with angular 1.x doesn't works fine, :(
   quiet: false,
   filename: "assets/main.js",
-  inline: true,
+  // inline: true, //  with angular 1.x doesn't works fine, :(
   noInfo:true,
   ///lazy:true,
-  quiet: false,
   publicPath:  config.output.publicPath,
   stats: { colors: true },
   devServer: {
