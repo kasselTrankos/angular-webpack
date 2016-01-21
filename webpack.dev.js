@@ -3,8 +3,6 @@ var BowerWebpackPlugin = require("bower-webpack-plugin");
 var path  =require('path');
 var host = 'localhost';
 var port = '3000';
-
-console.log(path.join(__dirname, "bower_components"));
 module.exports = {
   context: __dirname,
   devtool: '#source-map',

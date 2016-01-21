@@ -16,7 +16,6 @@ export default class AccountCtrl {
     vm.tweets.data = {};///reset
     vm.tweets.load($stateParams.account);
     vm.nameAccount = $stateParams.account;
-    vm.test ='que bueno!!, han aceptado mi pull request en #mongoose, siempre sienta bien, y si es gratis mejor @nodejs @MongoDB #javascript;'
   }
 
 }

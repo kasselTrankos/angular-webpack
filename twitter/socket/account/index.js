@@ -14,7 +14,8 @@ const Streaming = (serverSocket, _account)=>{
     var stream = T.stream('user', { track: account });
     console.log(' CAMBIA LA CUENTA', account);
     if(serverSocket!==null){
-      var io = require('socket.io')();
+      var io = require('socket.io')(serverSocket);
+      io.on('connection', ()=>{ console.log(' jodeeeer que pasa!!! SOCKET CONEXION IS DONE!!!! read'); });
       stream.on('tweet', function(tweet){
         connect();//kjoder etalles molones q trane de cabeza
         GetIdFromAccount(account)

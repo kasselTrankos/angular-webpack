@@ -12,6 +12,7 @@ var app = express();
 //## proxy the request for static assets
 app.use('/assets', proxy(url.parse('http://localhost:3000/assets')));
 app.use('/apitwitter', proxy(url.parse('http://localhost:3040')));
+app.use('/socket', proxy(url.parse('http://localhost:5000')));
 app.get('/*', function(req, res) {
     res.sendFile(__dirname + '/public/index.html');
 });

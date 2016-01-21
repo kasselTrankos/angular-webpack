@@ -12,6 +12,7 @@ export default class TweetFactory {
   }
   socket(){
     const sock = new SocketJs(this.socketUri);
+
     sock.onopen = function() {
       console.log('open in Account Factory do the work please');
     };

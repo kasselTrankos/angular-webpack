@@ -43,9 +43,9 @@ app.get('/tweet/*', (req, res)=>{
 
 var serverSocket = require('http').createServer(app);
 Streaming(serverSocket);
-
-server.listen(5000, ()=>{
-  
+serverSocket.listen(5000, ()=>{
+  console.info('----\n==> 🌎  SOCKET TWITTER is running on port %s', 5000);
+  console.info('==> 💻  Send requests to http://%s:%s','localhost', 5000);
 });
 
 const bufferSize = 100;
