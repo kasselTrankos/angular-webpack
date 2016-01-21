@@ -7,9 +7,9 @@ const initialState = {
 const Tweet = (state=initialState)=> {
   let factory;
   return {
-    addFactory: (_factory)=>{
+    addFactory: (_factory, account)=>{
       factory = _factory;
-      factory.socket();
+      factory.socket(account);
     },
     load: (account)=>{
       state.loading = true;

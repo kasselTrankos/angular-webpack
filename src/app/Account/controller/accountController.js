@@ -12,7 +12,7 @@ export default class AccountCtrl {
   constructor($stateParams, tweet) {
     'ngInject';
     let vm  = this;
-    vm.tweets.addFactory(tweet)//.factory = tweet;
+    vm.tweets.addFactory(tweet, $stateParams.account)//.factory = tweet;
     vm.tweets.data = {};///reset
     vm.tweets.load($stateParams.account);
     vm.nameAccount = $stateParams.account;

@@ -10,17 +10,12 @@ export default class TweetFactory {
     this.url = `http://${server.host}:${server.port}/${server.service}`;
     this.socketUri = `/ws/twitter`;
   }
-  socket(){
-  //  const socket = io('', {path: '/api/ws', transports: ['polling']});
-  console.log(this.socketUri);
+  socket(account) {
+    this.socketUri = `${this.socketUri}/${account}`;
     const socketConnect = io('', {path: this.socketUri, transports: ['polling']});
     socketConnect.on('tweet', (data) => {
       console.log(data);
-    //  socketConnect.emit('my other event', { my: 'data from client' });
     });
-    /*socketConnect.on('msg', (data) => {
-      console.log(data);
-    });*/
   }
   loadAllTweetsFromAccount(account) {
     var def = this.$q.defer();
