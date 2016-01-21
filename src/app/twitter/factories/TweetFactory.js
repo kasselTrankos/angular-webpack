@@ -1,6 +1,6 @@
 import {Bootstrap} from 'utils/Decorators';
-import SocketJs from 'sockjs-client';
-
+//import SocketJs from 'sockjs-client';
+import io from 'socket.io-client';
 @Bootstrap()
 export default class TweetFactory {
   constructor($http, $q, server){
@@ -8,21 +8,19 @@ export default class TweetFactory {
     this.$http = $http;
     this.$q = $q;
     this.url = `http://${server.host}:${server.port}/${server.service}`;
-    this.socketUri = `http://${server.host}:${server.socket}`;
+    this.socketUri = `/ws/twitter`;
   }
   socket(){
-    const sock = new SocketJs(this.socketUri);
-
-    sock.onopen = function() {
-      console.log('open in Account Factory do the work please');
-    };
-    sock.onmessage = function(e) {
-      console.log('message en account Factory', e.data);
-    };
-    sock.onclose = function() {
-      console.log('close en account Factory');
-    };
-
+  //  const socket = io('', {path: '/api/ws', transports: ['polling']});
+  console.log(this.socketUri);
+    const socketConnect = io('', {path: this.socketUri, transports: ['polling']});
+    socketConnect.on('tweet', (data) => {
+      console.log(data);
+    //  socketConnect.emit('my other event', { my: 'data from client' });
+    });
+    /*socketConnect.on('msg', (data) => {
+      console.log(data);
+    });*/
   }
   loadAllTweetsFromAccount(account) {
     var def = this.$q.defer();

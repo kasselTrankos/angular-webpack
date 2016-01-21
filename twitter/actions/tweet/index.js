@@ -7,7 +7,6 @@ import {Streaming} from './../../socket/account';
 export const get = (req, params)=>{
   ///activate stream, a ver como va!!!
   connect();
-  Streaming(null, params[0])
   return Timeline(params[0])
   .then((docs)=>{
     return PushMongoTimelineRest(docs, params[0], params[1])

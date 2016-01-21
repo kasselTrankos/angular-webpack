@@ -27,7 +27,7 @@ export const middleware = (req, res, actions)=> {
   const {action, params} = mapUrl(actions, splittedUrlPath);
 
   if (action) {
-    
+
     action(req, params)
       .then((result) => {
         if (result instanceof Function) {
