@@ -8,7 +8,7 @@ import angularMaterial from 'angular-material';
 import angularUIRouter from 'angular-ui-router';
 import AppCtrl from 'controllers/AppCtrl';
 import MainMenu from 'directives/MainMenu';
-import Tweets from 'directives/Tweets';
+import ListTweets from 'directives/ListTweets';
 import {ThemeColorsHelper, RouterHelper, TranslationHelper} from 'helpers';
 import TwitterTextFilter from 'filters/TwitterTextFilter';
 
@@ -25,7 +25,7 @@ mainModule
   .config(($stateProvider, $urlRouterProvider, $locationProvider)=>new RouterHelper($stateProvider, $urlRouterProvider, $locationProvider))
   .config(($translateProvider)=>new TranslationHelper($translateProvider))
   .directive('mainMenu', ($interval)=>new MainMenu($interval))
-  .directive('tweets', ()=>new Tweets())
+  .directive('listTweets', ($filter)=>new ListTweets($filter))
   .filter('twitterText', ()=>new TwitterTextFilter())
   .controller('AppCtrl', AppCtrl);
 

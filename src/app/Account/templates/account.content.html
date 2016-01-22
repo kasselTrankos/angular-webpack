@@ -1,16 +1,18 @@
 <style>
   .tweet{
     margin: 10px 0px;
-
+    display: table;
+    width: 100%;
     background: #fff;
     border-radius: 2px;
-    display: block;
-    float: left;
     position: relative;
     padding: 10px 8px;
 
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
     transition: all 0.2s ease-in-out;
+  }
+  .list-tweets {
+    width: 90%; margin: 5%;
   }
   .tweet a{color:#58630a; text-decoration: none;}
 </style>
@@ -21,7 +23,10 @@
   <p ng-show="vm.tweets.loading">Cargando las cuentas</p>
   <p ng-show="vm.tweets.error">Error en la carga, {{vm.tweets.error}}</p>
 
-  <Tweets data="vm.tweets.data" items-per-page="10" />
 
 
+
+</div>
+<div layout="row" layout-wrap  layout-align="start">
+  <list-tweets data="{{vm.tweets.data}}" tweets="vm.tweets.data" items-per-page="4" flex class="list-tweets" />
 </div>
