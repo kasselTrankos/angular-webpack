@@ -25,7 +25,6 @@ export const mapUrl = (availableActions = {}, url = [])=> {
 export const middleware = (req, res, actions)=> {
 
   const splittedUrlPath = req.url.split('?')[0].split('/').slice(1);
-  console.log(actions, ' pocyo', splittedUrlPath);
   const {action, params} = mapUrl(actions, splittedUrlPath);
 
   if (action) {

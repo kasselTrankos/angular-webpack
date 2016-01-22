@@ -20,11 +20,8 @@
 <div layout="row" layout-wrap  layout-align="center center">
   <p ng-show="vm.tweets.loading">Cargando las cuentas</p>
   <p ng-show="vm.tweets.error">Error en la carga, {{vm.tweets.error}}</p>
-  <div layout="row" layout-wrap  layout-align="space-between" flex="90">
-    <div flex="30" ng-repeat="tweet in vm.tweets.data track by $index"
-     class="tweet md-caption" >
-     <p ng-bind-html="tweet.text | twitterText" />
-    </div>
-  </div>
+
+  <Tweets data="vm.tweets.data" items-per-page="10" />
+
 
 </div>

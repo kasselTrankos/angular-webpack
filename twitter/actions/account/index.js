@@ -36,7 +36,6 @@ export const get = (req, params)=> {
   TwitterAccountModel.find(
     {}, 'account',
     (err, docs)=> {
-      console.log(docs);
       close();
       if(err){
         deferred.reject(err);

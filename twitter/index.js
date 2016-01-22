@@ -18,14 +18,13 @@ const app = express();
 const server = new http.Server(app);
 
 const io = new SocketIo(server);
-const stream = Tweet(io);
+//const stream = Tweet(io);
 
 io.path('/twitter');
 
 app.use(bodyParser.json());
 
 app.get('/account', (req, res)=>{
-  console.log(' dame un acuenta y que no sea de twitter');
   middleware(req, res, get);
 });
 app.post('/account', (req, res)=>{
@@ -33,7 +32,7 @@ app.post('/account', (req, res)=>{
   middleware(req, res, post);
 });
 app.get('/tweet/*', (req, res)=>{
-  stream(req.url.match(/^\/tweet\/(\w+)$/)[1]);
+  //stream(req.url.match(/^\/tweet\/(\w+)$/)[1]);
   middleware(req, res, get);
 });
 const bufferSize = 100;
