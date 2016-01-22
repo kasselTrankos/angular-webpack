@@ -9,16 +9,30 @@ export const Pagination = (elm, itemsPerPage, $filter)=>{
     //buena idea sacada de funcional si no existe ( es NAN), quizas aplicar
     // exists, jijij
     if(pages){
+      const click = gotoPage(tweetDiv, itemsPerPage, data, $filter, pages, angular.element(div));
       tweets.call(null, tweetDiv, itemsPerPage, data, $filter);
-      pagination.call(null, pages, div);
-
-
+      pagination.call(null, pages, div, click);
     }
-    console.log(pages);
   }
-
 }
+
+export const gotoPage = (container, limit, tweets, $filter, pages, div)=>{
+  return (page, func)=>{
+    cleanContainer(container, 'div');
+    cleanContainer(div, 'ul');
+    htmlTweets(container, limit, tweets, $filter, parseInt(page-1));
+    htmlPagination( pages, div, func, page);
+
+  }
+}
+
+export const cleanContainer = (container, name)=>{
+  ///claro primero elimino// si existe claro(de nuevo exists ayy cuanto sabe ese tio)
+  container.find(name).remove();
+}
+
 export const htmlTweets = (container, limit, tweets, $filter, begin=0)=>{
+
   for(var i = begin ; i<parseInt(begin+limit); i++){
     let div = document.createElement('div');
     div.className = 'tweet md-caption';
@@ -31,18 +45,48 @@ export const htmlTweets = (container, limit, tweets, $filter, begin=0)=>{
 export const Pages = (items, itemsPerPage)=>{
   return Math.ceil(items/itemsPerPage);
 }
-export const htmlPagination = (pages, container, showOnly = 5, actual=1)=>{
-  ///claro primero elimino// si existe claro(de nuevo exists ayy cuanto sabe ese tio)
-  if(container.firstChild) container.removeChild(container.firstChild);
+export const htmlPagination = (pages, container, click, actual=1, showOnly = 10)=>{
+
   const ul = document.createElement('ul');
   angular.element(container).append(ul);
-  const end = (pages>showOnly) ? showOnly : pages;
-  for(let i=1; i<=end; i++){
+  if(actual>1){
+    BeginPage(angular.element(ul), click);
+  }
+
+
+  const pager = parseInt(showOnly+actual);
+  let end = (actual<showOnly) ? showOnly: actual+parseInt(showOnly/2);
+  if(pages<pager) end = pages;
+
+  const first = (actual>parseInt(showOnly/2))? actual-parseInt(showOnly/2) :  actual;
+  for(let i=first; i<=end; i++){
     let li = document.createElement('li');;
     let a = document.createElement('a');
     if(i===actual) a.className = 'active';
     a.textContent = i;
+    a.addEventListener('click', ()=>{
+      click.call(null, i, click);
+    });
     angular.element(ul).append(li);
     angular.element(li).append(a);
   }
+  if(pages>pager && pager<pages){
+    CreateButton(ul, '...', parseInt(actual+showOnly), click);
+    CreateButton(ul, '›', ++actual, click);
+    CreateButton(ul, '»', pages, click);
+  }
+}
+
+
+
+
+export const CreateButton = (container, text, next, click)=>{
+  const li = document.createElement('li');
+  const a = document.createElement('a');
+  a.innerHTML = text;
+  a.addEventListener('click', ()=>{
+    click.call(null, next, click);//no mola reinjectar la funcions,,,,,
+  })
+  angular.element(container).append(li);
+  angular.element(li).append(a);
 }

@@ -22,10 +22,6 @@
 <div layout="row" layout-wrap  layout-align="center center">
   <p ng-show="vm.tweets.loading">Cargando las cuentas</p>
   <p ng-show="vm.tweets.error">Error en la carga, {{vm.tweets.error}}</p>
-
-
-
-
 </div>
 <div layout="row" layout-wrap  layout-align="start">
   <list-tweets data="{{vm.tweets.data}}" tweets="vm.tweets.data" items-per-page="4" flex class="list-tweets" />
