@@ -49,16 +49,17 @@ export const htmlPagination = (pages, container, click, actual=1, showOnly = 10)
 
   const ul = document.createElement('ul');
   angular.element(container).append(ul);
-  if(actual>1){
-    BeginPage(angular.element(ul), click);
+  if(actual>parseInt(showOnly/2)){
+    CreateButton(ul, '«', 1, click);
+    CreateButton(ul, '‹', actual, click);
   }
 
 
   const pager = parseInt(showOnly+actual);
-  let end = (actual<showOnly) ? showOnly: actual+parseInt(showOnly/2);
+  let end = (actual<parseInt(showOnly/2)) ? showOnly : actual+parseInt(showOnly/2);
   if(pages<pager) end = pages;
 
-  const first = (actual>parseInt(showOnly/2))? actual-parseInt(showOnly/2) :  actual;
+  const first = (actual>=parseInt(showOnly/2))? actual-parseInt(showOnly/2) :  1;
   for(let i=first; i<=end; i++){
     let li = document.createElement('li');;
     let a = document.createElement('a');
@@ -72,11 +73,14 @@ export const htmlPagination = (pages, container, click, actual=1, showOnly = 10)
   }
   if(pages>pager && pager<pages){
     CreateButton(ul, '...', parseInt(actual+showOnly), click);
-    CreateButton(ul, '›', ++actual, click);
+    CreateButton(ul, '›', actual, click);
     CreateButton(ul, '»', pages, click);
   }
 }
 
+export const BeginPagination = ()=>{
+
+}
 
 
 
@@ -84,6 +88,9 @@ export const CreateButton = (container, text, next, click)=>{
   const li = document.createElement('li');
   const a = document.createElement('a');
   a.innerHTML = text;
+  //no hay sentido debo buscar por que no puedo sumar y restar como variable
+  if(text==='›') next++;
+  if(text==='‹') next--;
   a.addEventListener('click', ()=>{
     click.call(null, next, click);//no mola reinjectar la funcions,,,,,
   })
