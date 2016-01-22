@@ -1,4 +1,4 @@
-var webpack = require('webpack');
+  var webpack = require('webpack');
 var BowerWebpackPlugin = require("bower-webpack-plugin");
 var path  =require('path');
 var host = 'localhost';

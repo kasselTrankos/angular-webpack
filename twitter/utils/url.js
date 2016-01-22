@@ -23,11 +23,12 @@ export const mapUrl = (availableActions = {}, url = [])=> {
   return (typeof actionAndParams.action === 'function') ? actionAndParams : notFound;
 }
 export const middleware = (req, res, actions)=> {
+
   const splittedUrlPath = req.url.split('?')[0].split('/').slice(1);
+  console.log(actions, ' pocyo', splittedUrlPath);
   const {action, params} = mapUrl(actions, splittedUrlPath);
 
   if (action) {
-
     action(req, params)
       .then((result) => {
         if (result instanceof Function) {
