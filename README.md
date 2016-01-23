@@ -13,7 +13,7 @@ For Dev, run:
 ```bash
 npm run dev
 ```
-
+By now, Redis is disabled and removed from project, because first need to run good mongodb. 
 Uses Redis as session of node.
 so you need to install and then do run:
 ```bash

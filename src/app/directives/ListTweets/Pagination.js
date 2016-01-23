@@ -1,6 +1,7 @@
 //////////////falta pues ahora entrar al socket, por lo que veo:
 // - necesito que cuando por socket añade un nuevo tweet, update sin cambiar de página
 // - mas limpio y elegante codigo
+// - buscar reducir variables
 export const Pagination = (...args)=>{
   const [elm, itemsPerPage, showOnly, $filter] = args;
   const ItemsPerPage = itemsPerPage || 10;
