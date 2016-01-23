@@ -8,17 +8,19 @@ import * as get from './actions/get';
 import {mapUrl, middleware} from './utils/url.js';
 import PrettyError from 'pretty-error';
 import http from 'http';
-import SocketIo from 'dynamic.io';
+import SocketIo from 'socket.io';
 const pretty = new PrettyError();
 import {Tweet} from './socket/tweet';
+import {StoreSocket} from './socket/store';
 
 ///////////////////////////////////////////////////
 
 const app = express();
 const server = new http.Server(app);
 
-const io = new SocketIo(server);
-const stream = Tweet(io);
+const io = SocketIo(server);
+const store = StoreSocket(io);
+const stream = Tweet(io, store);
 
 io.path('/twitter');
 

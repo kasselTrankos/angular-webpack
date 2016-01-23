@@ -12,7 +12,12 @@ export default class TweetFactory {
   }
   socket(account) {
     this.socketUri = `${this.socketUri}/${account}`;
-    const socketConnect = io('', {path: this.socketUri, transports: ['polling']});
+    const socketConnect = io(`http://localhost:3001/${account}`, { path: '/ws/twitter', transports: ['polling']});
+    //io('', {path: this.socketUri, transports: ['polling']});
+    socketConnect.on('connect', function () {
+      // socket connected (never gets fired)
+      console.log('connected', arguments);
+    });
     socketConnect.on('tweet', (data) => {
       console.log(data);
     });

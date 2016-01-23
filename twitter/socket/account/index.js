@@ -23,7 +23,7 @@ const Streaming = (serverSocket, _account)=>{
         .then((doc)=>InsertTweet(tweet, account, doc._id))
         .then((doc)=>{
           close();
-          //console.log(' joder tengo un tweet', doc.text);
+          console.log(' joder tengo un tweet', doc.text);
           io.emit('tweet', doc);
         })
         .catch((err)=>{close();
