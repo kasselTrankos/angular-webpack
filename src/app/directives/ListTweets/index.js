@@ -11,27 +11,19 @@ export default class ListTweets {
     this.scope = {
       items:'@data',
       tweets:'=',
-      itemsPerPage:'='
+      itemsPerPage:'=',
+      showOnly:'='
     }
     this.link = ($scope, $element, $attrs)=>{
 
-      const pagination = Pagination(angular.element($element),$scope.itemsPerPage, this.$filter);
+      const pagination = Pagination(
+        angular.element($element),
+        $scope.itemsPerPage,
+        $scope.showOnly,
+        this.$filter);
       $attrs.$observe('data', function() {
-        pagination(htmlPagination, htmlTweets,  $scope.tweets);
-        //$compile($element.contents())($scope);
+        pagination(htmlPagination, htmlTweets,  $scope.tweets);;
       });
     }
   }
-  /*link($scope, $element, $attrs, $filter) {
-    console.log(this, ' esta aqui tambien seguiro', $filter,'????');
-    const pagination = Pagination(angular.element($element),$scope.itemsPerPage);
-    $attrs.$observe('data', function() {
-      pagination(htmlPagination, htmlTweets,  $scope.tweets);
-      //$compile($element.contents())($scope);
-    });
-    //<p ng-bind-html="tweet.text | twitterText" />
-    // const total = $scope.tweets.length;
-    //const pages = getPages($scope.tweets, $scope.itemsPerPage);
-    //console.log(pages, total, $scope.tweets);
-  }*/
 }
