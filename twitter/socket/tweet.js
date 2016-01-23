@@ -15,14 +15,14 @@ export const Tweet = (io, store)=>{
   return (account='kasselTrankos')=>{
     //store(account);
     store(account).on('connection', (socket)=>{
-      console.log(' estoy conectado, ',socket, ' SOY EL SOCKET AL FIN!!!');
+      // console.log(' estoy conectado, ',socket, ' SOY EL SOCKET AL FIN!!!');
       T.stream('user', { track: account }).on('tweet', function(tweet){
         connect();
         GetIdFromAccount(account)
         .then((doc)=>InsertTweet(tweet, account, doc._id))
         .then((doc)=>{
           close();
-          console.log(' joder tengo un tweet', doc.text);
+          // console.log(' joder tengo un tweet', doc.text);
           socket.emit('tweet', doc);
         })
         .catch((err)=>{close();

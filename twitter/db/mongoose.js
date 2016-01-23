@@ -82,7 +82,7 @@ export const TwitterTweet = new Schema({
     retweeted: {type: Boolean},
     possibly_sensitive: {type: Boolean},
     in_reply_to_user_id: {type: Number},
-    place: {type: String},
+    place: {type: Object},
     user: {
       profile_sidebar_fill_color: {type: String},
       profile_sidebar_border_color: {type: String},

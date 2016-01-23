@@ -8,14 +8,16 @@ export default class TweetFactory {
     this.$http = $http;
     this.$q = $q;
     this.url = `http://${server.host}:${server.port}/${server.service}`;
-    this.socketUri = `/ws/twitter`;
+    this.socketConf = {
+      path: '/ws/twitter',
+      uri: `http://${server.host}:${server.port}`
+    }
   }
   socket(account) {
-    this.socketUri = `${this.socketUri}/${account}`;
-    const socketConnect = io(`http://localhost:3001/${account}`, { path: '/ws/twitter', transports: ['polling']});
-    //io('', {path: this.socketUri, transports: ['polling']});
+    const socketConnect = io(`${this.socketConf.uri}/${account}`,
+      { path: this.socketConf.path, transports: ['polling']});
+
     socketConnect.on('connect', function () {
-      // socket connected (never gets fired)
       console.log('connected', arguments);
     });
     socketConnect.on('tweet', (data) => {
