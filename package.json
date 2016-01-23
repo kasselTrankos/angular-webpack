@@ -49,8 +49,7 @@
   },
   "homepage": "https://github.com/kasselTrankos/angular-webpack-ES6-Karma#readme",
   "dependencies": {
-    "angular-animate": "^1.4.8",
-    "angular-aria": "^1.4.8",
+    
     "angular-hmr": "git+https://github.com/yargalot/Angular-HMR.git",
     "express": "^4.13.3",
     "font-awesome": "^4.5.0",
@@ -80,6 +79,7 @@
     "concurrently": "^1.0.0",
     "connect-redis": "^3.0.2",
     "css-loader": "^0.23.1",
+    "dynamic.io": "0.0.3",
     "express-session": "^1.13.0",
     "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.8.5",
