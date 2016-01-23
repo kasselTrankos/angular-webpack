@@ -64,8 +64,8 @@ export const htmlPagination = (pages, container, click, actual=1, showOnly = 10)
   let first = (actual>=parseInt(showOnly/2))? parseInt(actual-parseInt(showOnly/2)) :  1;
   if(pages<pager) first = pages-showOnly;
   if(first<=1) first = 1;
-  HtmlPrevButtons(ul, actual, showOnly, first, click);
 
+  HtmlPrevButtons(ul, actual, showOnly, first, click);
   for(let i=first; i<=end; i++){
     let li = document.createElement('li');;
     let a = document.createElement('a');
@@ -109,10 +109,6 @@ export const CreateButton = (...args)=>{
   const li = document.createElement('li');
   const a = document.createElement('a');
   a.innerHTML = text;
-  //no hay sentido debo buscar por que no puedo sumar y restar como variable
-  // pero hay un bug en el pass de variable
-  //if(text==='›') next++;
-  //if(text==='‹') next--;
   a.addEventListener('click', ()=>{
     click.call(null, next, click);//no mola reinjectar la funcions,,,,,
   })
