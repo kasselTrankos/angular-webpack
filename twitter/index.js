@@ -8,7 +8,7 @@ import * as get from './actions/get';
 import {mapUrl, middleware} from './utils/url.js';
 import PrettyError from 'pretty-error';
 import http from 'http';
-import SocketIo from 'socket.io';
+import SocketIo from 'dynamic.io';
 const pretty = new PrettyError();
 import {Tweet} from './socket/tweet';
 
@@ -18,7 +18,7 @@ const app = express();
 const server = new http.Server(app);
 
 const io = new SocketIo(server);
-//const stream = Tweet(io);
+const stream = Tweet(io);
 
 io.path('/twitter');
 
@@ -32,7 +32,7 @@ app.post('/account', (req, res)=>{
   middleware(req, res, post);
 });
 app.get('/tweet/*', (req, res)=>{
-  //stream(req.url.match(/^\/tweet\/(\w+)$/)[1]);
+  stream(req.url.match(/^\/tweet\/(\w+)$/)[1]);
   middleware(req, res, get);
 });
 const bufferSize = 100;

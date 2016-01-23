@@ -23,7 +23,7 @@ export const Tweet = (_io)=>{
         .then((doc)=>InsertTweet(tweet, account, doc._id))
         .then((doc)=>{
           close();
-          // console.log(' joder tengo un tweet', doc.text);
+          console.log(' joder tengo un tweet', doc.text);
           room.emit('tweet', doc);
         })
         .catch((err)=>{close();
