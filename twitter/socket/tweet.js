@@ -1,5 +1,6 @@
 import SocketIo from 'socket.io';
-import {InsertTweet,GetIdFromAccount,
+import {InsertTweet, ExistsTweet,
+  GetIdFromAccount,
   connect, close} from './../db';
 import Twit from 'twit';
 var T = new Twit({
@@ -10,16 +11,17 @@ var T = new Twit({
 });
 
 export const Tweet = (io, store)=>{
-  // const io = _io;
-  ///console.log(store, 'dime si es o no una function');
   return (account='kasselTrankos')=>{
-    //store(account);
     store(account).on('connection', (socket)=>{
       // console.log(' estoy conectado, ',socket, ' SOY EL SOCKET AL FIN!!!');
       T.stream('user', { track: account }).on('tweet', function(tweet){
         connect();
         GetIdFromAccount(account)
-        .then((doc)=>InsertTweet(tweet, account, doc._id))
+        .then((doc)=>ExistsTweet(tweet))
+        .then((doc)=>{
+          if(doc===null) return InsertTweet(tweet, account, doc._id)
+          else return doc;
+        })
         .then((doc)=>{
           close();
           // console.log(' joder tengo un tweet', doc.text);
@@ -31,27 +33,5 @@ export const Tweet = (io, store)=>{
         });
       });
     });
-    /*io.setupNamespace(`/.*${account}/`, function(nsp) {
-      console.log('im connection to namespace', nsp);
-
-      nsp.on('connect', function(socket) {
-        console.log('i am conoected to socket', socket);
-        console.log(' ACCOUNT IS ', account, ' trye');
-        T.stream('user', { track: account }).on('tweet', function(tweet){
-          connect();
-          GetIdFromAccount(account)
-          .then((doc)=>InsertTweet(tweet, account, doc._id))
-          .then((doc)=>{
-            close();
-            console.log(' joder tengo un tweet', doc.text);
-            socket.emit('tweet', doc);
-          })
-          .catch((err)=>{close();
-            ///hay un bug con el nodo "geo"
-            console.log('necesito trabajar los errores', err);
-          });
-        });
-      });
-    });*/
   }
 };
