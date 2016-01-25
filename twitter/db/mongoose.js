@@ -45,7 +45,7 @@ export const TwitterToken = new Schema({
 export const TwitterTokenModel = Mongoose.model('TwitterToken', TwitterToken);
 
 export const TwitterAccount = new Schema({
-  account: {type: String, unique: true, index: true},
+  name: {type: String, unique: true, index: true},
   date: {type: Date, default: Date.now}
 });
 export const TwitterAccountModel = Mongoose.model('TwitterAccount', TwitterAccount);

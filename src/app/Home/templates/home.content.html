@@ -18,7 +18,7 @@
     <p ng-show="vm.accounts.loading">Cargando las cuentas</p>
     <p ng-show="vm.accounts.error">Error en la carga, {{vm.accounts.error}}</p>
     <md-button ng-repeat="account in vm.accounts.data track by $index"
-     ui-sref="account({account: account.account})"
-     class="account-button" aria-label="{{account.account}}">{{account.account}}</md-button>
+     ui-sref="account({account: account.name})"
+     class="account-button" aria-label="{{account.name}}">{{account.name}}</md-button>
   </div>
 </div>

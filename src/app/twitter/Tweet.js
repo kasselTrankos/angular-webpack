@@ -1,3 +1,4 @@
+import {TweetStore} from './store';
 const initialState = {
   loading: true,
   data: {},
@@ -6,10 +7,13 @@ const initialState = {
 
 const Tweet = (state=initialState)=> {
   let factory;
+  const Store = TweetStore(state.data);
   return {
     addFactory: (_factory, account)=>{
       factory = _factory;
-      factory.socket(account);
+      factory.socket(account, (tweet)=>{
+        Store.append(tweet);
+      });
     },
     load: (account)=>{
       state.loading = true;

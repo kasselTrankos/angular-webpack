@@ -3,21 +3,23 @@ import {UnionUnique} from './../../utils/url';
 import Q from 'q';
 export const post = (req, params)=> {
   connect();
-  const {account} = req.body;
+  const {name} = req.body;
+  console.log(name, ' ave?');
   let deferred = Q.defer();
   TwitterAccountModel.update(
-    {account: account},
+    {name: name},
     {
-      $set: {account: account}
+      $set: {name: name}
     },
     {upsert: true, new: true},
     (err, rowsAffected)=> {
 
       if(err){
-        reject('Error, account whith error:"', err,"'" );
+        reject('Error, name whith error:"', err,"'" );
       }else{
+        console.log('saved bevfor',rowsAffected);
       TwitterAccountModel.find(
-        {}, 'account _id',
+        {}, 'name _id',
         (err, docs)=>{
           close();
         if(err) {
@@ -34,7 +36,7 @@ export const get = (req, params)=> {
   connect();
   let deferred = Q.defer();
   TwitterAccountModel.find(
-    {}, 'account',
+    {}, 'name',
     (err, docs)=> {
       close();
       if(err){

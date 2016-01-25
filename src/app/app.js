@@ -20,7 +20,13 @@ const mainModule = angular.module('ats.main', [
     angularStaticFilesloader
 ]);
 mainModule
-  .constant('server', {host: 'localhost', port: '3001', service: 'apitwitter', socket: '5000'})
+  .constant('server', {
+    host: 'localhost', port: '3001', service: 'apitwitter',
+    socket: {
+      path:'/ws/twitter',
+      host: 'localhost',
+      port: '3001'
+    }})
   .config(($mdThemingProvider)=> new ThemeColorsHelper($mdThemingProvider))
   .config(($stateProvider, $urlRouterProvider, $locationProvider)=>new RouterHelper($stateProvider, $urlRouterProvider, $locationProvider))
   .config(($translateProvider)=>new TranslationHelper($translateProvider))

@@ -14,12 +14,18 @@ export const Tweet = (io, store)=>{
   return (account='kasselTrankos')=>{
     store(account).on('connection', (socket)=>{
       // console.log(' estoy conectado, ',socket, ' SOY EL SOCKET AL FIN!!!');
+
       T.stream('user', { track: account }).on('tweet', function(tweet){
         connect();
         GetIdFromAccount(account)
-        .then((doc)=>ExistsTweet(tweet))
+        .then((Account)=>{
+          account = Account;
+          console.log(account, ' antes que nada aqui debo buscar');
+          return ExistsTweet(tweet)}
+        )
         .then((doc)=>{
-          if(doc===null) return InsertTweet(tweet, account, doc._id)
+          console.log(account, ' is that ',account.account, doc._id, doc, ' que pasa al siguiente nivel please');
+          if(doc===null) return InsertTweet(tweet, account.account, account._id)
           else return doc;
         })
         .then((doc)=>{
