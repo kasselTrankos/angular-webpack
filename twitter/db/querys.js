@@ -3,17 +3,15 @@ import {connect, close,
   TwitterTweetModel, TwitterAccountModel} from './index';
 export const findAllTweetsByAccount = (account, sort={created_at:-1})=>{
   let deferred = Q.defer();
-
   TwitterTweetModel.find({
     account:account
-  }, 'text').sort(sort).exec((err, docs)=>{
+  }, 'text user.profile_image_url').sort(sort).exec((err, docs)=>{
     if(!err){
       deferred.resolve(docs);
     }else{
       console.log('ERROR en querys.findAllTweetsByAccount:',err, 'account', account);
        deferred.reject(err);
      }
-    close();
   });
   return deferred.promise;
 }
@@ -27,7 +25,6 @@ export const GetIdFromAccount = (accountName)=>{
       console.log('ERROR en querys.GetIdFromAccount:',err, 'account', account);
       deferred.reject(err);
     }else {
-
       deferred.resolve(doc);
     }
   })
@@ -83,7 +80,7 @@ export const ExistsTweet = (tweet)=>{
 }
 export const InsertTweet = (tweet, account, account_id)=>{
   let deferred = Q.defer();
-  
+
   tweet.account = account;
   tweet.account_id = account_id;
   var Tweet = new TwitterTweetModel(tweet);

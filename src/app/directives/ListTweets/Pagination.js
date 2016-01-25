@@ -40,13 +40,23 @@ export const cleanContainer = (container, name)=>{
 }
 
 export const htmlTweets = (container, limit, tweets, $filter, begin=0)=>{
-
-  for(var i = begin ; i<parseInt(begin+limit); i++){
+  const start = parseInt(begin*limit);
+  let end = parseInt((++begin)*limit);
+  if(end>tweets.length) end = tweets.length;
+  console.log(start, end);
+  for(var i = start  ; i<end; i++){
     let div = document.createElement('div');
     div.className = 'tweet md-caption';
     let p = document.createElement('p');
+    let img = document.createElement('img');
+    //console.log(tweets[i], ' oque pasa?');
+    img.setAttribute('src', tweets[i].user.profile_image_url);
+    img.className = 'circle';
     p.innerHTML = $filter('twitterText')(tweets[i].text);
+
+    angular.element(div).append(img);
     angular.element(div).append(p);
+
     angular.element(container).append(div);
   }
 }

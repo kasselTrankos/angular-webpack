@@ -1,6 +1,14 @@
 export const StoreSocket = (io)=>{
   const sockets = [];
-  return (account)=>{
+
+  const exists = (account)=>{
+    let store = false;
+    sockets.map((elm)=>{
+      if(elm.name===account) store = true;
+    });
+    return store;
+  }
+  const create =  (account)=>{
     let store = Store(account, sockets)
     if(store!==null) return store.of;
     ///io.connect(`/ws/${account}`);
@@ -11,6 +19,10 @@ export const StoreSocket = (io)=>{
     ///console.log(store.of);
     sockets.push(store);
     return store.of;
+  }
+  return {
+    create: create,
+    exists: exists
   }
 }
 export const Store = (account, arr)=>{

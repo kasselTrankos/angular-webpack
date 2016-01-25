@@ -12,28 +12,35 @@ var T = new Twit({
 
 export const Tweet = (io, store)=>{
   return (accountName='kasselTrankos')=>{
-    store(accountName).on('connection', (socket)=>{
-       console.log(' estoy conectado, ',accountName, ' SOY EL SOCKET AL FIN!!!');
-       let account=null;
-      T.stream('user', { track: accountName }).on('tweet', function(tweet){
-        connect();
-        GetIdFromAccount(accountName)
-        .then((Account)=>{
-          account = Account;
-          return ExistsTweet(tweet);
-        })
-        .then((doc)=>InsertTweet(doc, account.name, account._id))
-        .then((doc)=>{
-          close();
-          console.log('emit', doc.text)
-          // console.log(' joder tengo un tweet', doc.text);
-          socket.emit('tweet', doc);
-        })
-        .catch((err)=>{close();
-          ///hay un bug con el nodo "geo"
-          console.log('necesito trabajar los errores', err);
+    ///console.log(store);
+    if(store.exists(accountName)) {
+      console.log(' RECALL IT', accountName);
+      return false;
+    }else{
+      store.create(accountName).on('connection', (socket)=>{
+        console.log(' estoy conectado, ',accountName, ' SOY EL SOCKET AL FIN!!!');
+        let account=null;
+        T.stream('user', { track: accountName }).on('tweet', function(tweet){
+          connect();
+          GetIdFromAccount(accountName)
+          .then((Account)=>{
+            account = Account;
+            return ExistsTweet(tweet);
+          })
+          .then((doc)=>InsertTweet(doc, account.name, account._id))
+          .then((doc)=>{
+            close();
+            console.log('emit', doc.text);
+            socket.emit('tweet', doc);
+          })
+          .catch((err)=>{
+            close();
+            ///hay un bug con el nodo "geo"
+            console.log('necesito trabajar los errores', err);
+          });
         });
       });
-    });
+    }
+
   }
 };
