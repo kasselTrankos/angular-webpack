@@ -18,10 +18,10 @@ export const findAllTweetsByAccount = (account, sort={created_at:-1})=>{
   return deferred.promise;
 }
 //esto debe ira a account so torpe!!!
-export const GetIdFromAccount = (account)=>{
+export const GetIdFromAccount = (accountName)=>{
   let deferred = Q.defer();
   TwitterAccountModel.findOne({
-    name:account.name
+    name:accountName
   }, '', (err, doc)=>{
     if(err) {
       console.log('ERROR en querys.GetIdFromAccount:',err, 'account', account);
@@ -68,10 +68,12 @@ export const PushMongoTimelineRest = (tweets, account, account_id)=>{
 }
 //will be asociated to previous function, ( power of functional, complex before is update/insert and now not)
 export const ExistsTweet = (tweet)=>{
+  console.log(tweet.id)
   let deferred = Q.defer();
   TwitterTweetModel.findOne({id: tweet.id}, '',(err, doc)=>{
     if(!err)  {
-      deferred.resolve(doc);
+      if(doc===null) deferred.resolve(tweet);
+      else deferred.resolve(doc);
     }else{
       console.log('ERR en querys.ExistsTweet: ',err);
       deferred.reject(err);
@@ -81,6 +83,7 @@ export const ExistsTweet = (tweet)=>{
 }
 export const InsertTweet = (tweet, account, account_id)=>{
   let deferred = Q.defer();
+  
   tweet.account = account;
   tweet.account_id = account_id;
   var Tweet = new TwitterTweetModel(tweet);

@@ -35,8 +35,8 @@ app.post('/account', (req, res)=>{
 });
 app.get('/tweet/*', (req, res)=>{
   console.log(req.params[0]);
-  const [nameAccount] = req.params;
-  stream(nameAccount);
+  //const [nameAccount] = req.params;
+  stream(req.params[0]);
   middleware(req, res, get);
 });
 const bufferSize = 100;
