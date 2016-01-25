@@ -20,6 +20,7 @@ const Tweet = (state=initialState)=> {
       factory.loadAllTweetsFromAccount(account)
       .then((data)=>{
         state.data = data;
+        state.error = false;
         state.loading = false;
       }).catch((e)=>{
         state.error = e;

@@ -6,7 +6,6 @@ export const SaveNewAccount = (accountName)=>{
   const Account = new TwitterAccountModel({name: accountName});
   console.log(Account, ' SAE', accountName);
   Account.save((err, doc, numAffected)=> {
-
     if(err) deferred.reject(err);
     else deferred.resolve(doc);
   });
