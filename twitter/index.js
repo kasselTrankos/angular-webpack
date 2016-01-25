@@ -34,7 +34,9 @@ app.post('/account', (req, res)=>{
   middleware(req, res, post);
 });
 app.get('/tweet/*', (req, res)=>{
-  stream(req.url.match(/^\/tweet\/(\w+)$/)[1]);
+  console.log(req.params[0]);
+  const [nameAccount] = req.params;
+  stream(nameAccount);
   middleware(req, res, get);
 });
 const bufferSize = 100;
