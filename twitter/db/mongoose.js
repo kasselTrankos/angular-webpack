@@ -2,7 +2,7 @@ import Mongoose from 'mongoose';
 const urlDatabase = 'mongodb://localhost:27017/vera';
 export const Schema = Mongoose.Schema;
 /////////////event handler for mongoose
-Mongoose.connection.on('connected', function () {
+const conn = Mongoose.connection.on('connected', function () {
   //console.log('Mongoose default connection open to twitter app');
 });
 Mongoose.connection.on('error',function (err) {
@@ -42,13 +42,13 @@ export const TwitterToken = new Schema({
   access_token: {type: String, default: '', index:true},
   date: {type: Date, default: Date.now}
 });
-export const TwitterTokenModel = Mongoose.model('TwitterToken', TwitterToken);
+export const TwitterTokenModel = conn.model('TwitterToken', TwitterToken);
 
 export const TwitterAccount = new Schema({
   name: {type: String},
   date: {type: Date, default: Date.now}
 });
-export const TwitterAccountModel = Mongoose.model('TwitterAccount', TwitterAccount);
+export const TwitterAccountModel = conn.model('TwitterAccount', TwitterAccount);
 
 export const TwitterTweet = new Schema({
   account: {type: String, index: true},
@@ -141,4 +141,4 @@ export const TwitterTweet = new Schema({
     source: {type: String},
     in_reply_to_status_id: {type: Number}
 });
-export const TwitterTweetModel = Mongoose.model('TwitterTweet', TwitterTweet);
+export const TwitterTweetModel = conn.model('TwitterTweet', TwitterTweet);

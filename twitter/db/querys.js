@@ -3,11 +3,16 @@ import {connect, close,
   TwitterTweetModel, TwitterAccountModel} from './index';
 export const findAllTweetsByAccount = (account, sort={created_at:-1})=>{
   let deferred = Q.defer();
+
   TwitterTweetModel.find({
-    name:account
+    account:account
   }, 'text').sort(sort).exec((err, docs)=>{
-    if(!err) deferred.resolve(docs);
-    else deferred.reject(err);
+    if(!err){
+      deferred.resolve(docs);
+    }else{
+      console.log('ERROR en querys.findAllTweetsByAccount:',err, 'account', account);
+       deferred.reject(err);
+     }
     close();
   });
   return deferred.promise;
@@ -41,6 +46,7 @@ export const PushMongoTimelineRest = (tweets, account, account_id)=>{
     {upsert: true, new: true},
     (err, rowsAffected)=> {
       if(err) {
+        console.log('ERR en querys.PushMongoTimelineRest: ',err);
         callback({status: false, error: err});
         return;
       }
@@ -83,7 +89,7 @@ export const InsertTweet = (tweet, account, account_id)=>{
     if(!err){
       deferred.resolve(doc);
     }else{
-      console.log('ERR en querys.ExistsTweet: ',err);
+      console.log('ERR en querys.InsertTweet: ',err);
       deferred.reject(err);
     }
   });

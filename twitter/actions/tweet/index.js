@@ -2,16 +2,22 @@ import {Timeline} from './../../api';
 import {connect, close} from './../../db';
 import {findAllTweetsByAccount, PushMongoTimelineRest} from './../../db/querys';
 import Q from 'q';
-import {Streaming} from './../../socket/account';
 ////////////////////Frist last data by RESt. Then open socket
 export const get = (req, params)=>{
   ///activate stream, a ver como va!!!
+  const [name] = params;
+  console.log(name, ' CCOUNT NAMO');
   connect();
-  return Timeline(params[0])
+  return Timeline(name)
   .then((docs)=>{
-    return PushMongoTimelineRest(docs, params[0], params[1])
+    return PushMongoTimelineRest(docs, name)
   })
-  .then(()=>{return findAllTweetsByAccount(params[0])})
+  .then(()=>{
+    return findAllTweetsByAccount(name)}
+  )
   .then((docs)=>{close(); return docs })
-  .catch((err)=>err);
+  .catch((err)=>{
+    close();
+    console.log(err);
+  });
 }
