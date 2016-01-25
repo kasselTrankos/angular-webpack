@@ -23,6 +23,7 @@ mainModule
   .constant('server', {
     host: 'localhost', port: '3001', service: 'apitwitter',
     socket: {
+      connections: [],
       path:'/ws/twitter',
       host: 'localhost',
       port: '3001'

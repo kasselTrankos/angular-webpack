@@ -21,7 +21,7 @@ const server = new http.Server(app);
 const io = SocketIo(server);
 const store = StoreSocket(io);
 const stream = Tweet(io, store);
-
+console.log('INDEX::::::::::::::::::::::::::::::::::::::::::::::::::::::');
 io.path('/twitter');
 
 app.use(bodyParser.json());
@@ -30,11 +30,10 @@ app.get('/account', (req, res)=>{
   middleware(req, res, get);
 });
 app.post('/account', (req, res)=>{
-
   middleware(req, res, post);
 });
 app.get('/tweet/*', (req, res)=>{
-  console.log(req.params[0]);
+  console.log('pero que pasa??===!');
   //const [nameAccount] = req.params;
   stream(req.params[0]);
   middleware(req, res, get);

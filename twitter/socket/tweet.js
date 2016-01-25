@@ -17,6 +17,7 @@ export const Tweet = (io, store)=>{
       console.log(' RECALL IT', accountName);
       return false;
     }else{
+      console.log('=====================================', accountName)
       store.create(accountName).on('connection', (socket)=>{
         console.log(' estoy conectado, ',accountName, ' SOY EL SOCKET AL FIN!!!');
         let account=null;

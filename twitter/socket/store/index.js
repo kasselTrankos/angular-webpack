@@ -4,8 +4,10 @@ export const StoreSocket = (io)=>{
   const exists = (account)=>{
     let store = false;
     sockets.map((elm)=>{
+      ///console.log('EL;', elm);
       if(elm.name===account) store = true;
     });
+    console.log(store, ' joder""""!!!!!!!!!!!');
     return store;
   }
   const create =  (account)=>{

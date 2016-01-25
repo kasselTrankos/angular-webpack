@@ -12,10 +12,15 @@ export default class TweetFactory {
       path: `${server.socket.path}`,
       uri: `http://${server.host}:${server.port}`
     }
+    this.connections = server.socket.connections;
   }
   ///working, now need a store handler for tweets( esto lo primero)
   // second need to disconect when goes home
   socket(account, callback) {
+    console.log(this.connections, ' CLOLLOL');
+    if(this.connections.indexOf(account)>=0) return false;
+    console.log(' JODER Y QUE PASA=', this.connections.indexOf(account));
+    this.connections.push(account);
     const socketConnect = io(`${this.socketConf.uri}/${account}`,
       { path: this.socketConf.path, transports: ['polling']});
 
@@ -24,7 +29,8 @@ export default class TweetFactory {
     });
     //////aqui un poco
     socketConnect.on('tweet', (data, callback) => {
-      if(callback)callback.call(null, data);
+      console.log('tweet', data);
+      if(callback) callback.call(null, data);
 
     });
   }
