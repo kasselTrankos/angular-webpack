@@ -1,7 +1,7 @@
 import SocketIo from 'socket.io';
 import {InsertTweet, ExistsTweet,
   GetIdFromAccount,
-  connect, close} from './../db';
+  connect, close} from './../../db';
 import Twit from 'twit';
 var T = new Twit({
   consumer_key: 'YcsBUJYAH5LYXUkFFHJWQxqIk',
@@ -17,7 +17,8 @@ export const Tweet = (io, store)=>{
       console.log(' RECALL IT', accountName);
       return false;
     }else{
-      console.log('=====================================', accountName)
+      // una vez levantado el stream no rehacer el mismo.
+      ///console.log('=====================================', accountName)
       ///store.create(accountName).on('connection', (socket)=>{
         console.log(' estoy conectado, ',accountName, ' SOY EL SOCKET AL FIN!!!');
         let account=null;

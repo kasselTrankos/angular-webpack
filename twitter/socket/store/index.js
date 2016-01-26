@@ -4,10 +4,8 @@ export const StoreSocket = (io)=>{
   const exists = (account)=>{
     let store = false;
     sockets.map((elm)=>{
-      ///console.log('EL;', elm);
       if(elm.name===account) store = true;
     });
-    console.log(store, ' joder""""!!!!!!!!!!!');
     return store;
   }
   const create =  (account)=>{
@@ -18,7 +16,6 @@ export const StoreSocket = (io)=>{
       name: account,
       of: io.of(`/${account}`)
     }
-    ///console.log(store.of);
     sockets.push(store);
     return store.of;
   }

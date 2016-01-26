@@ -12,7 +12,9 @@ const Tweet = (state=initialState)=> {
     addFactory: (_factory, account)=>{
       factory = _factory;
       factory.socket(account, (tweet)=>{
-        Store.append(tweet);
+        //Store.append(tweet);
+        console.log(state.data.length, ' data ', tweet);
+        state.data.unshift(tweet);
       });
     },
     load: (account)=>{

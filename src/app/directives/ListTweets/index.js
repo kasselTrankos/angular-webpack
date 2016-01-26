@@ -22,6 +22,7 @@ export default class ListTweets {
         $scope.showOnly,
         this.$filter);
       $attrs.$observe('data', function() {
+        console.log('reload it agea');
         pagination(htmlPagination, htmlTweets,  $scope.tweets);;
       });
     }
