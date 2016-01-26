@@ -24,9 +24,9 @@ export default class TweetFactory {
     const socketConnect = io(`${this.socketConf.uri}/${account}`,
       { path: this.socketConf.path, transports: ['polling']});
 
-    socketConnect.on('connect', function () {
+    /*socketConnect.on('connect', function () {
       console.log('connected');
-    });
+    });*/
     //////aqui un poco
     socketConnect.on('tweet', (data, callback) => {
       console.log('tweet', data);

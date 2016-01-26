@@ -18,7 +18,7 @@ export const Tweet = (io, store)=>{
       return false;
     }else{
       console.log('=====================================', accountName)
-      store.create(accountName).on('connection', (socket)=>{
+      ///store.create(accountName).on('connection', (socket)=>{
         console.log(' estoy conectado, ',accountName, ' SOY EL SOCKET AL FIN!!!');
         let account=null;
         T.stream('user', { track: accountName }).on('tweet', function(tweet){
@@ -32,7 +32,7 @@ export const Tweet = (io, store)=>{
           .then((doc)=>{
             close();
             console.log('emit', doc.text);
-            socket.emit('tweet', doc);
+            store.create(accountName).emit('tweet', doc);
           })
           .catch((err)=>{
             close();
@@ -40,7 +40,7 @@ export const Tweet = (io, store)=>{
             console.log('necesito trabajar los errores', err);
           });
         });
-      });
+      //});
     }
 
   }
